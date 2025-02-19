@@ -1,0 +1,40 @@
+.container {
+  position: relative;
+  background: #fff;
+  box-sizing: border-box;
+  padding: 10px 20px;
+  width: 100%;
+  height: 100%;
+}
+.msg-theme {
+  position: absolute;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  background-color: #FFC300;
+  border-radius: 15rpx;
+  height: 50rpx;
+  margin: 0 auto;
+  padding: 10rpx 25rpx;   /* 添加内边距，控制内容与边框的距离 */
+  display: inline-block;  /* 根据内容自动调整宽度 */
+  left: 50%;
+  transform: translate(-50%,0);
+  white-space: nowrap;
+}
+
+.msg-cont {
+  box-sizing: border-box;
+  height: 80vh;
+  overflow-y: auto;
+  margin-top: 60rpx;
+  margin-left: 20rpx;
+  max-width: 100%;
+  word-wrap: break-word;  /* 当内容超出宽度时进行换行 */
+  word-break: break-all;  /* 强制在单词内换行（如果有需要） */
+  
+}
+.msg-text {
+  margin-top: 16px;
+  color: #333333;
+  display: inline-block;
+}

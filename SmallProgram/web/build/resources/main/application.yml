@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: SmallWeb
+  profiles:
+    active: ${profile.name}
+

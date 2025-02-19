@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--suppress ALL -->
+<mapper namespace="com.lyh.dao.AuthenMapper">
+
+    <select id="getList" resultType="com.lyh.entity.authen.AuthenVo">
+        select a.*,b.nickname as nickName,b.username as userName,b.wx_num as wxNum, b.head_url as headUrl,b.wx_openid as wxOpenId, b.phone
+        from authen a
+        left join student_user b on a.user_id = b.id
+        <where>
+            <if test="schoolName != null and schoolName !=''">
+                a.school_name = #{schoolName}
+            </if>
+            <if test="studentName != null and studentName !=''">
+                a.real_name = #{studentName}
+            </if>
+            <if test="status != null and status !=''">
+                a.status = #{status}
+            </if>
+        </where>
+        order by a.create_time desc
+    </select>
+
+
+    <update id="updateStatus" parameterType="java.lang.String">
+        UPDATE authen
+        SET status = #{status},
+        cont = #{cont}
+        <if test="status == 2">
+            , grade = #{cont}
+        </if>
+        WHERE id = #{id}
+    </update>
+
+
+    <select id="findAuthenByUserIds" resultType="com.lyh.entity.authen.Authen">
+        SELECT a.*
+        FROM (
+        SELECT user_id, MAX(create_time) AS max_create_time
+        FROM authen
+        WHERE user_id IN
+        <foreach collection="userIds" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+        GROUP BY user_id
+        ) AS b
+        JOIN authen a ON a.user_id = b.user_id AND a.create_time = b.max_create_time;
+    </select>
+
+</mapper>

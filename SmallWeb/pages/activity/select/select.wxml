@@ -1,0 +1,11 @@
+<navigation-bar back="{{false}}" home-button="{{true}}" color="black" background="#FFF" bind:home="handleHome"/>
+
+<view class="container">
+  <view class="title">请选择创建的找搭子方式</view>
+  <view class="desc">*快速发布适用于无需时间、地点、图片介绍的找搭子需求</view>
+  <view class="desc">*详细发布适用于需要对活动内容进行具体阐述的找搭子需求</view>
+  <view class="selectcont">
+    <view class="selectitem {{selectIndex == 1 ? 'selected' : '' }}" bindtap="confirm" data-index="1">快 速 发 布</view>
+    <view class="selectitem {{selectIndex == 2 ? 'selected' : '' }}" bindtap="confirm" data-index="2">详 细 发 布</view>
+  </view>
+</view>

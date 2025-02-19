@@ -1,0 +1,84 @@
+.popup {
+  position: fixed;
+  z-index: 90;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.popup .popup-close {
+  border-radius: 50%;
+  width: 45rpx;
+  height: 45rpx;
+  line-height: 45rpx;
+  text-align: center;
+  vertical-align: middle;
+  margin-top: 20rpx;
+  
+  background: rgba(166, 166, 166, 1);
+  color: #fff;
+}
+
+.popup .popup-warp {
+  background: #fff;
+  border-radius: 20px;
+  padding: 0 10px 20px 10px;
+}
+
+.popup .popup-header {
+  padding: 10px;
+  display: flex;
+  color: rgb(182, 182, 182);
+  justify-content: space-between;
+  font-size: 32rpx;
+}
+
+.popup .popup-content {
+  display: grid;
+  max-height: 300px;
+  padding: 8px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+.popup-option {
+  padding: 5px;
+  background: #fff;
+  color: #000;
+  text-align: center;
+  box-sizing: border-box;
+}
+.popup-selected {
+  box-sizing: border-box;
+  background: rgba(255, 195, 0, 1);
+  text-align: center;
+  border-radius: 2px;
+  color: #fff;
+}
+
+.popup .popup-footer {
+  display: flex;
+  justify-content: center;
+  background-color: #fff;
+}
+
+/* === 提交按钮样式 === */
+.submitbtn {
+  width: 20%;
+  text-align: center;
+  border-radius: 20%;
+  height: 60rpx;
+  line-height: 60rpx;
+  color: #000;
+  font-weight: 700;
+  /* margin: 30px auto; */
+  background: rgba(255, 195, 0, 1);
+  /* 使用金啡色 */
+  transition: background 0.3s ease, transform 0.3s ease;
+}

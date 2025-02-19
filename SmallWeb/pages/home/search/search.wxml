@@ -1,0 +1,90 @@
+<navigation-bar title="" back="{{true}}" color="black" background="#FFF"></navigation-bar>
+
+<view class="container">
+
+  <view class="search-title">
+    <icon class="search-icon miconsousuo" bindtap="toSearch"></icon>
+    <input class="search-input" type="text" placeholder="" maxlength="35" model:value="{{searchText}}" bindfocus="onFocus" bindblur="onBlur" bindconfirm="onConfirm" />
+  </view>
+
+
+  <view class="history-cont" wx:if="{{showHistory && historyArray.length>0}}">
+    历史搜索
+    <view class="history-item">
+      <view class="history-item-text" wx:for="{{ historyArray }}" wx:key="index" data-index="{{index}}" bindtap="to_History_Text_Search">
+        {{ item.searchText }}
+      </view>
+    </view>
+  </view>
+
+
+
+  <view class="search-cont" wx:else>
+    <view class="plate">
+      <view class="plate-item {{plateIndex === 1 ? 'plate-selected' : '' }}" bindtap="toPlateTag" data-index="1">活动</view>
+      <view class="plate-item {{plateIndex === 2 ? 'plate-selected' : '' }}" bindtap="toPlateTag" data-index="2">用户</view>
+    </view>
+
+    <view class="plate-page">
+
+      <view wx:if="{{plateIndex == 1}}">
+        <scroll-view wx:if="{{activityList.length>0}}" type="custom" scroll-y>
+          <grid-view class="page_grid_view" type="masonry" main-axis-gap="15" cross-axis-gap="15" cross-axis-count="2">
+            <view class="page_item" wx:for="{{activityList}}" wx:key="index" data-index="{{index}}" bindtap="toActivityItem">
+              <image class="page_image" src="{{item.image}}" mode="widthFix">
+                <view wx:if="{{item.category==='娱乐'}}" style="background: yellow;" class="page-category">{{item.category}}</view>
+                <view wx:if="{{item.category==='出游'}}" style="background: rgb(171, 248, 108);" class="page-category">{{item.category}}</view>
+                <view wx:if="{{item.category==='运动'}}" style="background: rgb(109, 241, 191)" class="page-category">{{item.category}}</view>
+              </image>
+              <view class="page_cont">
+                <view class="page_head">
+                  <image class="page_headimg" src="{{item.headUrl}}" />
+                </view>
+                <view class="page_text">
+                  <text class="page_text_title">{{item.theme}}</text>
+                  <text class="page_text_num"> {{item.enrolledRatio }} 人</text>
+                </view>
+              </view>
+            </view>
+          </grid-view>
+        </scroll-view>
+        <view wx:else class="nulllist">
+          <icon class="miconsousuo1"></icon>无搜索结果
+        </view>
+      </view>
+
+
+
+      <view wx:if="{{plateIndex == 2}}">
+        <view class="user_page" wx:if="{{userList.length>0}}">
+          <view class="promulgator" bindtap="toUserPreview" wx:for="{{userList}}" wx:key="index" data-index="{{index}}">
+            <view class="promulgator-img">
+              <image wx:if="{{item.studentUser.headUrl}}" class="user-headimg" src="{{item.studentUser.headUrl}}" />
+              <image wx:else class="user-headimg" src="/images/my/nullhead.png" />
+            </view>
+            <view class="promulgator-user">
+              <view class="promulgator-user-title">
+                {{item.studentUser.nickName}}
+                <icon wx:if="{{item.studentUser.sex==1}}" class="miconsexm" />
+                <icon wx:if="{{item.studentUser.sex==2}}" class="miconsexw" />
+              </view>
+              <view class="promulgator-user-authen">
+                <view wx:for="{{item.authenArray}}" wx:key="id">
+                  <view wx:if="{{ item }}" class="authen_item">{{ item }}</view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view wx:else class="nulllist">
+          <icon class="miconsousuo1"></icon>无搜索结果
+        </view>
+      </view>
+
+    </view>
+
+  </view>
+
+
+
+</view>

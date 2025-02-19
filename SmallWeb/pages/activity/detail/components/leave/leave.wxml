@@ -1,0 +1,15 @@
+<view class="popup">
+  <view class="popup-warp">
+
+    <view class="popup-header" bindtap="closeSendLeave">
+      <view class="popup-header-title" bindtap="closeSendLeave"><text class="popup-icon"></text></view>
+      <view class="popup-header-right" bindtap="submitSendLeave">发送</view>
+    </view>
+    
+    <view class="popup-content">
+      <textarea class="popup-textarea" placeholder="请输入评论，不超过150字" maxlength="150" model:value="{{leaveCont}}" />
+      <view class="popup-confirm" bindtap="closeSendLeave">关闭</view>
+    </view>
+
+  </view>
+</view>

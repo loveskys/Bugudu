@@ -1,0 +1,244 @@
+/* === 页面容器样式 === */  
+.container {  
+  box-sizing: border-box;  
+  background: #FFFFFF; /* 柔和中性色背景 */  
+  padding: 10px; /* 增加页面内边距 */  
+}  
+
+.detail:hover {  
+  transform: scale(1.02); /* 稍微放大效果 */  
+}  
+
+/* === 头像容器样式 === */  
+.avatar-wrapper {  
+  transform: scale(1.5);
+  display: flex;
+  justify-content: center;
+  margin: 50rpx 0;
+}  
+
+/* === 头像按钮样式 === */  
+button.r-avatar-wrapper {  
+  appearance: none;  
+  outline: none;   
+  border: none;  
+  cursor: pointer;  
+  padding: 0;  
+  margin: 0 10px 0 0;  
+  width: 80px;  
+  height: 80px;  
+  border-radius: 50%;  
+  box-sizing: border-box;  
+  border: 2px solid #D4A017; /* 柔和的金色边框 */  
+  transition: transform 0.3s ease, box-shadow 0.3s ease;  
+}  
+
+/* === 头像按钮悬停效果 === */  
+button.r-avatar-wrapper:hover {  
+  transform: scale(1.1);  
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* 明显的阴影 */  
+}  
+
+/* === 头像图像样式 === */  
+.r-avatar {  
+  width: 100%;  
+  height: 100%;  
+  border-radius: 50%;  
+}  
+
+/* === 空头像图标样式 === */  
+.r-avatar-null {  
+  width: 30px;  
+  height: 30px;  
+  margin-top: 25px;  
+}  
+
+/* === 性别选择器样式 === */  
+.sexSelect {  
+  width: 120px; /* 增加宽度，提高间距 */  
+  display: flex;  
+  justify-content: space-between;  
+  align-items: center;  
+  box-sizing: border-box;  
+  margin-left: 0;  
+}  
+
+/* === 性别选择器单选按钮样式 === */  
+.sexSelect .wx-radio-input {  
+  border-radius: 50%;  
+  width: 18px;  
+  height: 18px;  
+  box-sizing: border-box;  
+  margin-bottom: 2px;  
+  border: 2px solid #ccc;  
+  background-color: #fff;  
+  transition: all 0.3s ease;  
+}  
+
+/* === 单选按钮选中样式 === */  
+.sexSelect .wx-radio-input.wx-radio-input-checked {  
+  border: 4px solid #FFC107; /* 使用新金色 */  
+}  
+
+.sexSelect .wx-radio-input.wx-radio-input-checked::before {  
+  width: 50%;  
+  height: 50%;  
+  border-radius: 50%;  
+  background: #FFC107;  
+  content: '';  
+  transform: translate(-50%, -50%) scale(1);  
+}  
+
+/* === 输入框容器样式 === */  
+.input-wrapper {  
+  display: flex;  
+  align-items: center; 
+  padding: 18px 22px; /* 适中内边距 */  
+  box-sizing: border-box;  
+  border-top: none;  
+  color: #555;  
+  font-weight: 600;  
+  position: relative;
+  /* border-bottom: 2px solid #FFC300;   */
+}  
+.input-wrapper::after {
+  content: ""; /* 伪元素内容为空 */
+  display: block; /* 作为块级元素显示 */
+  width: 90%; /* 设置宽度为60%（可以根据需要调整） */
+  height: 2px; /* 设置高度与原分割线相同 */
+  background-color: #FFC300; /* 分割线颜色 */
+  position: absolute; /* 绝对定位 */
+  bottom: 0; /* 与底部对齐 */
+  left: 50%; /* 将其左侧对齐到父元素的中心 */
+  transform: translateX(-50%); /* 向左移动自身宽度的一半，以实现居中 */
+}
+
+/* === 标签样式 === */  
+.label {  
+  width: 90px;  
+  flex-shrink: 0;  
+  color: #000000; /* 柔和字体颜色 */  
+  font-weight: 600;
+  font-size: 18px; /* 设置字体大小为16px */
+}
+
+/* === 输入区域样式 === */  
+.input,  
+.mbti,  
+.hobby{  
+  flex: 1;
+}
+
+/* === 文本区域外层样式 === */  
+.textarea-wrapper {  
+  padding: 10px 10px;  
+  box-sizing: border-box;  
+  border-top: none;  
+  font-weight: 600;  
+}  
+
+/* === 文本区域样式 === */  
+.textarea {  
+  width: 95%;  
+  height: 140px; /* 调整高度 */  
+  margin: auto;  
+  padding: 15px 15px;  
+  box-sizing: border-box;  
+  border-top: none;  
+  color: #333;  
+  font-weight: 600;  
+  border-radius: 10px;  
+  /* background-color: rgba(245, 245, 245, 0.8); 更柔和的背景色   */
+  border: 1px solid #eeeeee;
+}  
+
+.textarea:focus {  
+  border-color: #D4A017; /* 聚焦边框 */  
+  outline: none;  
+}  
+
+.capsule {
+  display: flex; /* 使用 flex 布局 */
+  align-items: center; /* 垂直居中对齐 */
+}
+
+.capsule-title {
+  font-size: 20px;          /* 设置标题字体大小 */
+  font-weight: 600;         /* 加粗字体 */
+  color: #000000;              /* 设置字体颜色 */
+  margin: 10px 0;           /* 上下间距，增加与其他元素的分隔 */
+  padding-left: 22px;
+}
+.capsule-optional{
+  font-size: 18px; /* 字体大小 */
+  color: #BAB8B8; /* 字体颜色 */
+}
+.capsule-explain {
+  font-size: 16px; /* 设置说明文字的字体大小 */
+  color: #BAB8B8; /* 设置说明文字颜色 */
+  padding-left: 22px;
+}
+.input-wrapper2 {  
+  display: flex;  
+  align-items: center; 
+  padding: 18px 16px; /* 适中内边距 */  
+  box-sizing: border-box;  
+  border-top: none;  
+  color: #555;  
+  font-weight: 600;  
+  position: relative;
+  /* border-bottom: 2px solid #FFC300;   */
+}  
+.input-wrapper2::after{
+  content: ""; /* 伪元素内容为空 */
+  display: block; /* 作为块级元素显示 */
+  width: 90%; /* 设置宽度为60%（可以根据需要调整） */
+  height: 2px; /* 设置高度与原分割线相同 */
+  background-color: #FFF6DB; /* 分割线颜色 */
+  position: absolute; /* 绝对定位 */
+  bottom: 0; /* 与底部对齐 */
+  left: 50%; /* 将其左侧对齐到父元素的中心 */
+  transform: translateX(-50%); /* 向左移动自身宽度的一半，以实现居中 */
+}
+.radiusView {
+  background-color: #FFF6DB;  /* 设置背景色 */
+  border-radius: 20px;        /* 设置圆角 */
+  padding: 5px 25px;          /* 内边距 */
+  margin-bottom: 0px;         /* 下边距以分隔不同输入项 */
+  margin-right: 15px;         /* 右边距，增加右边空隙 */
+  width: 80rpx;               /* 固定宽度 */
+  height: 40rpx;              /* 固定高度 */
+  display: flex;              /* 使用 flex 布局 */
+  justify-content: center;     /* 水平居中 */
+  align-items: center;         /* 垂直居中 */
+}
+.label2 {  
+  color: #000000;             /* 柔和字体颜色 */  
+  font-weight: 600;           /* 字体加粗 */
+  font-size: 18px;            /* 设置字体大小为18px */
+  text-align: center;         /* 文本水平居中 */
+  margin: 0;                  /* 去掉默认外边距 */
+  line-height: 40rpx;         /* 行高与容器高度一致 */
+  flex-shrink: 0;             /* 不允许收缩 */
+}
+/* === 提交按钮样式 === */
+.submitbtn {
+  width: 40%;
+  /* 更宽的按钮 */
+  text-align: center;
+  border-radius: 20px;
+  height: 45px;
+  line-height: 45px;
+  color: #000;
+  font-weight: 700;
+  margin: 30px auto;
+  background: rgba(255, 195, 0, 1);
+  /* 使用金啡色 */
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+/* === 提交按钮悬停效果 === */  
+.submitbtn:hover {  
+  background: #dfa923; /* 悬停时调整背景色 */  
+  transform: translateY(-2px);  
+}

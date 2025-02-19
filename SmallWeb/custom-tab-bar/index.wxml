@@ -1,0 +1,9 @@
+<!-- https://developers.weixin.qq.com/community/develop/doc/000e687dc3ccb853c579f9d145b000 -->
+<view class="custom-tabbar">
+  <block wx:for="{{list}}" wx:key="index">
+    <view class="tab-item" bindtap="switchTab" data-path="{{item.pagePath}}" data-index="{{index}}">
+      <image src="{{selected === index ? item.selectedIconPath : item.iconPath}}" class="tab-icon"></image>
+      <!-- <text style="color: {{selected === index ? selectedColor : color}}">{{item.text}}</text> -->
+    </view>
+  </block>
+</view>

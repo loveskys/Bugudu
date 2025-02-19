@@ -1,0 +1,58 @@
+<view class="container">
+
+  <view class="">
+    <view class="top-nav">
+      <image src="/images/search.png" class="top_icon" mode="scaleToFill" bindtap="toSearch" />
+      <image src="/images/message.png" class="top_icon" mode="scaleToFill" bindtap="toMsg" />
+      <image src="/images/bugudu_icon.png" class="mid_icon" />
+    </view>
+
+    <swiper class="swiper" autoplay="true" interval="3000" indicator-dots circular="true" indicator-active-color="white" indicator-color="#979797">
+      <view wx:for="{{swiperList}}" wx:key="index" data-index="{{index}}" bindtap="toSwiperItem">
+        <swiper-item class="swiper-item">
+          <image class="swiper-image" src="{{item.image}}" mode="aspectFill"  show-menu-by-longpress />
+        </swiper-item>
+      </view>
+    </swiper>
+
+    <view class="plate">
+      <view class="plate-item {{plateIndex === 0 ? 'plate-selected' : '' }}" bindtap="toPlateTag" data-index="0">推荐</view>
+      <view class="plate-item {{plateIndex === 1 ? 'plate-selected' : '' }}" bindtap="toPlateTag" data-index="1">娱乐</view>
+      <view class="plate-item {{plateIndex === 2 ? 'plate-selected' : '' }}" bindtap="toPlateTag" data-index="2">公益</view>
+      <view class="plate-item {{plateIndex === 3 ? 'plate-selected' : '' }}" bindtap="toPlateTag" data-index="3">运动</view>
+      <view class="plate-item {{plateIndex === 4 ? 'plate-selected' : '' }}" bindtap="toPlateTag" data-index="4">学习</view>
+    </view>
+
+
+    <!-- 无活动 -->
+    <view wx:if="{{activityList.length === 0}}" class="no-activities">
+      <image class="no-activities-image" src="/images/my/no_added_activities.png" mode="aspectFit" />
+      <view class="no-activities-text">这里还没有活动，等你发布哦~</view>
+    </view>
+
+    <scroll-view type="custom" scroll-y>
+      <grid-view class="page_grid_view" type="masonry" main-axis-gap="15" cross-axis-gap="15" cross-axis-count="2">
+        <view class="page_item" wx:for="{{activityList}}" wx:key="index" data-index="{{index}}" bindtap="toActivityItem">
+          <image class="page_image" src="{{item.image}}" mode="widthFix">
+            <!-- <view wx:if="{{item.category==='娱乐'}}" style="background: #FFC300;" class="page-category">{{ item.RelativeDate }}</view>
+                  <view wx:if="{{item.category==='公益'}}" style="background: #FFC300;" class="page-category">{{item.RelativeDate}}</view>
+                  <view wx:if="{{item.category==='运动'}}" style="background: #FFC300" class="page-category">{{item.RelativeDate}}</view>
+                  <view wx:if="{{item.category==='学习'}}" style="background: #FFC300" class="page-category">{{item.RelativeDate}}</view> -->
+            <view style="background: #FFC300" class="page-category">{{item.RelativeDate}}</view>
+          </image>
+          <view class="page_cont">
+            <view class="page_head">
+              <image class="page_headimg" src="{{item.headUrl}}" />
+            </view>
+            <view class="page_text">
+              <text class="page_text_title" style="position: relative">{{item.theme}}</text>
+              <text class="page_text_num"> {{item.enrolledRatio }} 人</text>
+            </view>
+          </view>
+        </view>
+      </grid-view>
+    </scroll-view>
+
+  </view>
+
+</view>

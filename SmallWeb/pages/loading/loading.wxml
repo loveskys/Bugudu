@@ -1,0 +1,14 @@
+<!--pages/loading/loading.wxml-->
+<view class="title">样式二：</view>
+<view class="box">
+  <view class="loading">
+    <view></view>
+    <view></view>
+    <view></view>
+    <view></view>
+    <view></view>
+    <view></view>
+    <view></view>
+    <view></view>
+  </view>
+</view>

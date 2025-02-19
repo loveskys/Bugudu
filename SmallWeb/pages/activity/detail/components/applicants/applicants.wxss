@@ -1,0 +1,103 @@
+.applicants {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+/* 透明灰色背景蒙版 */
+.applicants-mask {
+  z-index: -10;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.applicants-container {
+  z-index: 90;
+  margin: 200rpx 0 0 50rpx;
+  height: 1200rpx;
+  width: 650rpx;
+  box-sizing: border-box;
+  background: #ffffff;
+  border-radius: 20px;
+  overflow-y: auto;
+  /* 是否要把滚动放在applicants-content内，即固定标题applicants-header */
+}
+
+
+.applicants-header {
+  padding: 40rpx 40rpx 50rpx 40rpx;
+  font-size: 40rpx;
+  display: flex;
+  position: relative;
+}
+
+.applicants-content {
+  padding: 0 30rpx;
+  flex-direction: column;
+  display: flex;
+  /* position: relative; */
+}
+
+.applicants-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30rpx;
+  height: 120rpx;
+  background-color: rgb(255, 246, 217);
+  border-radius: 20px;
+  box-sizing: border-box;
+}
+
+.applicants-avatar {
+  flex-shrink: 0;
+  margin: 0 20rpx;
+  width: 80rpx;
+  height: 80rpx;
+  background-color: white;
+  border-radius: 50%;
+}
+
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 300rpx;
+  margin-right: 20rpx;
+  box-sizing: border-box;
+}
+
+.wrapper-text {
+  font-size: 24rpx;
+  margin-right: 10rpx;
+  margin-bottom: 10rpx;
+  /* 防止文本换行，如果文本过长，显示省略号并隐藏超出部分 */
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.authen-container {
+  display: flex;
+}
+
+.authen_item {
+  display: inline-block;
+  width: max-content;
+  border-radius: 15px;
+  margin-right: 10rpx;
+  padding: 0 15rpx;
+  font-weight: bold;
+  font-size: 24rpx;
+  /* height: 36rpx; */
+  line-height: 36rpx;
+  background: #FFC300;
+  box-sizing: border-box;
+  color: #ffffff;
+}

@@ -1,0 +1,91 @@
+mysqlIp: 175.178.118.254
+redisIp: 175.178.118.254
+minioIp: 175.178.118.254
+
+server:
+  port: 443
+  ssl:
+    enabled: true      #true表示开启https请求协议
+    protocol: TLS
+    key-store: classpath:bugudutechsz.cn.pfx
+    key-store-password: 6ajj35cbj3
+    key-store-type: PKCS12
+
+environment:
+  env: dev
+
+spring:
+  data:
+    redis:
+      host: ${redisIp}
+      port: 6379
+      password: 123456
+      database: 0
+      lettuce:
+        pool:
+          max-idle: 100     #最大空闲连接数
+          min-idle: 20      #最小空闲连接数
+          max-wait:  -1s    #等待可用连接的最大时间，负数为不限制
+          max-active: -1    #最大活跃连接数，负数为不限制
+
+
+  datasource:
+    username: root
+    password: aewqsdOs@R
+    url: jdbc:mysql://${mysqlIp}:3306/lanparty?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&rewriteBatchedStatements=true&allowPublicKeyRetrieval=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      maximum-pool-size: 20       #池中最大连接数
+      minimum-idle: 10            #最小空闲连接数
+      auto-commit: true           #自动提交
+      idle-timeout: 600000        #连接在池中最大空闲时间10分钟
+      max-lifetime: 900000        #池中连接最长时间15分钟
+      connection-timeout: 60000   #获取连接超时时间60秒
+      keepalive-time: 60000       #一分钟检测一次连接
+      pool-name: lanparty_hikaripool #连接池名称
+
+
+  servlet:
+    multipart:
+      enabled: true              #是否支持批量上传
+      max-file-size: 1024MB      #上传文件最大为1024M
+      max-request-size: 1024MB   #上传请求最大为1024M
+      file-size-threshold: 0     #文件大小阈值,当大于这个阈值时将写入到磁盘,否则存在内存中
+      resolve-lazily: false      #判断是否要延迟解析文件
+
+
+minio:
+  host: http://${minioIp}:9000/
+  bucketUrl: http://${minioIp}:9000/spfile/
+  accessKey: minio
+  secretKey: minio123
+  bucket: spfile
+
+
+#mybaits-plus配置
+mybatis-plus:
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl     #这个配置会将执行的sql打印出来
+    map-underscore-to-camel-case: true          #开启驼峰下划线转换
+    cache-enabled: true                         #配置缓存的开关
+    lazy-loading-enabled: true                  #延时加载的开关
+    multiple-result-sets-enabled: true          #开启的话，延时加载一个属性时会加载该对象全部属性，否则按需加载属性
+    use-generated-keys: true                    #插入时返回主键
+    default-statement-timeout: 60               #sql超时时间
+    default-fetch-size: 100                     #分片
+
+
+
+
+wx:
+  getOpenIdUrl: https://api.weixin.qq.com/sns/jscode2session
+  getAccessTokenUrl: https://api.weixin.qq.com/cgi-bin/token
+  appId: wxf2c08388dc2455bf
+  appSecret: d142723e5c64f8e8e33157b7c524cc1d
+
+#  appId: wx4729b3e165aa4e60
+#  appSecret: acb43ca7a72ff20380dbb3d92fa71f15
+
+
+

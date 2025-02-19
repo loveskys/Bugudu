@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--suppress ALL -->
+<mapper namespace="com.lyh.dao.ActivityMapper">
+
+    <select id="getPageList" resultType="com.lyh.entity.activity.ActivityVo">
+        select a.*,
+            b.nickname as nickName,
+            b.username as userName,
+            b.wx_num as wxNum,
+            b.head_url as headUrl,
+            b.phone,
+            c.location_name locationName,
+            c.location_address locationAddress,
+            c.longitude,
+            c.latitude,
+            c.address,
+            d.people_num peopleNum,
+            d.sex conditSex,
+            d.grade conditGrade,
+            d.other conditOther,
+            CASE WHEN e.activity_id IS NULL OR e.is_delete = 1 THEN 0 ELSE 1 END AS swiper
+        from activity a
+        left join student_user b on a.issue = b.id
+        left join activity_location c on a.id = c.activity_id
+        left join activity_condit d on a.id = d.activity_id
+        left join swiper e on a.id = e.activity_id
+        <where>
+            <if test="theme != null and theme !=''">
+                a.theme = #{theme}
+            </if>
+            <if test=" tag == 3 ">
+                and a.is_delete = '1'
+            </if>
+            <if test=" tag == 2 ">
+                <![CDATA[ and a.activity_end < NOW() and a.wx_img_check <> 3 ]]>
+            </if>
+            <if test=" tag == 1 ">
+                <![CDATA[ and (a.activity_end > NOW() and a.is_delete = '0') ]]>
+            </if>
+            <if test=" wxCheck == 3 ">
+                and a.wx_img_check = 3
+            </if>
+        </where>
+        order by a.create_time desc
+    </select>
+
+
+    <select id="getByThemeList" resultType="com.lyh.entity.activity.ActivityVo">
+        select a.*,
+        b.nickname as nickName,
+        b.username as userName,
+        b.wx_num as wxNum,
+        b.head_url as headUrl,
+        b.phone,
+        c.people_num peopleNum,
+        c.sex conditSex,
+        c.grade conditGrade,
+        c.other conditOther
+        from activity a
+        left join student_user b on a.issue = b.id
+        left join activity_condit c on a.id = c.activity_id
+        where a.is_delete = '0' and a.wx_img_check = '2' and a.activity_end > NOW()
+        <if test="theme != null and theme !=''">
+            and a.theme like concat('%',#{theme,jdbcType=VARCHAR},'%')
+        </if>
+        order by a.create_time desc
+    </select>
+
+
+    <select id="detail" resultType="com.lyh.entity.activity.ActivityVo">
+        select a.*,
+            b.nickname as nickName,
+            b.username as userName,
+            b.wx_num as wxNum,
+            b.head_url as headUrl,
+            b.phone,
+            c.people_num peopleNum,
+            c.sex conditSex,
+            c.grade conditGrade,
+            c.other conditOther,
+            d.location_name locationName,
+            d.location_address locationAddress,
+            d.longitude,
+            d.latitude,
+            d.address,
+            e.activity_id isCollect
+        from activity a
+        left join student_user b on a.issue = b.id
+        left join activity_condit c on a.id = c.activity_id
+        left join activity_location d on a.id = d.activity_id
+        left join activity_collect e on (a.id = e.activity_id and e.user_id = #{userId})
+        where a.id = #{id} and a.is_delete = '0' and a.wx_img_check = '2'
+        order by a.create_time desc
+    </select>
+
+
+    <select id="pc_detail" resultType="com.lyh.entity.activity.ActivityVo">
+        select a.*,
+               b.nickname as nickName,
+               b.username as userName,
+               b.wx_num as wxNum,
+               b.head_url as headUrl,
+               b.phone,
+               c.people_num peopleNum,
+               c.sex conditSex,
+               c.grade conditGrade,
+               c.other conditOther,
+               d.location_name locationName,
+               d.location_address locationAddress,
+               d.longitude,
+               d.latitude,
+               d.address
+         from activity a
+         left join student_user b on a.issue = b.id
+         left join activity_condit c on a.id = c.activity_id
+         left join activity_location d on a.id = d.activity_id
+        where a.id = #{id}
+        order by a.create_time desc
+    </select>
+
+
+
+    <select id="getUserActivityList" resultType="com.lyh.entity.activity.ActivityVo">
+        select a.*,
+               b.nickname as nickName,
+               b.username as userName,
+               b.wx_num as wxNum,
+               b.head_url as headUrl,
+               b.phone,
+               c.people_num peopleNum,
+               c.sex conditSex,
+               c.grade conditGrade,
+               c.other conditOther,
+               d.location_name locationName,
+               d.location_address locationAddress,
+               d.longitude,
+               d.latitude,
+               d.address
+        from activity a
+        left join student_user b on a.issue = b.id
+        left join activity_condit c on a.id = c.activity_id
+        left join activity_location d on a.id = d.activity_id
+        <if test="apply != null and apply !=''">
+            right join activity_apply p on (a.id = p.activity_id and p.user_id = #{apply})
+        </if>
+        <if test="collect != null and collect !=''">
+            right join activity_collect e on (a.id = e.activity_id and e.user_id = #{collect})
+        </if>
+
+        where a.is_delete = '0' and a.wx_img_check = '2'
+        <if test="issue != null and issue !=''">
+            and a.issue = #{issue}
+        </if>
+        order by a.create_time desc
+    </select>
+
+
+<!--    <select id="getSwiperList" resultType="com.lyh.entity.activity.Swiper">-->
+<!--        select id, image, 0 AS isArticle-->
+<!--        from activity-->
+<!--        where is_delete = '0' and wx_img_check = '2' and activity_end > NOW() and recommend = '1'-->
+<!--        order by create_time desc limit #{num};-->
+<!--    </select>-->
+
+
+    <select id="getHomeActivityList" resultType="com.lyh.entity.activity.ActivityVo">
+        select a.*,
+               b.nickname as nickName,
+               b.username as userName,
+               b.wx_num as wxNum,
+               b.head_url as headUrl,
+               b.phone,
+               c.people_num peopleNum,
+               c.sex conditSex,
+               c.grade conditGrade,
+               c.other conditOther,
+               d.location_name locationName,
+               d.location_address locationAddress,
+               d.longitude,
+               d.latitude,
+               d.address
+         from activity a
+         left join student_user b on a.issue = b.id
+         left join activity_condit c on a.id = c.activity_id
+         left join activity_location d on a.id = d.activity_id
+         where a.is_delete = '0' and a.wx_img_check = '2' and a.activity_end > NOW()
+            <if test="category != null and category !=''">
+                and a.category = #{category}
+            </if>
+            <if test="recommend != null and recommend !=''">
+                and a.recommend = #{recommend}
+            </if>
+         order by a.create_time desc
+    </select>
+
+
+</mapper>

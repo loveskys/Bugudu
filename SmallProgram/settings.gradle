@@ -1,0 +1,3 @@
+rootProject.name = 'SmallProgram'
+include 'common'
+include 'web'

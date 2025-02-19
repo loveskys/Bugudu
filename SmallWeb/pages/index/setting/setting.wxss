@@ -1,0 +1,50 @@
+.container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  box-sizing: border-box;
+  background: #ffffff;
+}
+
+.setting {
+  display: flex;
+  flex-direction: column;
+}
+.setting-wrapper {
+  display: flex;
+  padding: 10px 10px 5px 10px;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  border-bottom: .5px solid rgba(0, 0, 0, 0.1);
+}
+.setting-label {
+  width: 120px;
+  height: 40px;
+  padding-left: 10px;
+  color: rgb(50, 50, 50);
+  display: flex;
+  align-items: center;
+}
+.setting-text {
+  flex: 1;
+  color: rgb(50, 50, 50);
+  text-align: end;
+  font-size: 15px;
+  line-height: 15px;
+}
+.setting-icon {
+  width: 50px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgb(90, 90, 90);
+}
+.miconyoujiantou {
+  display: flex;
+  align-items: center;
+}
+

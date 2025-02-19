@@ -1,0 +1,57 @@
+plugins {
+    id 'java-library'
+    id 'org.springframework.boot' version '3.3.1'
+    id 'io.spring.dependency-management' version '1.1.5'
+}
+
+group = 'com.lyh'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+springBoot {
+    mainClass = null        // 当前模块不设置主类
+    jar.enabled = true      // 启用常规的JAR构建
+    bootJar.enabled = false // 禁用SpringBoot的可执行JAR构建
+}
+
+
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compileOnly 'org.projectlombok:lombok:1.18.34'
+    annotationProcessor 'org.projectlombok:lombok:1.18.34'
+
+    //mysql驱动依赖
+    runtimeOnly 'com.mysql:mysql-connector-j:8.4.0'
+
+    //mybatis-plus依赖
+    api ('com.baomidou:mybatis-plus-boot-starter:3.5.7') {
+        exclude module: 'mybatis-spring'
+    }
+    api 'org.mybatis:mybatis-spring:3.0.3'
+
+    //redis依赖
+    api 'org.springframework.boot:spring-boot-starter-data-redis'
+    api 'io.lettuce:lettuce-core'
+
+    //minio依赖
+    api 'io.minio:minio:8.4.3'
+
+
+    api 'org.springframework.boot:spring-boot-starter-web'
+    api 'org.springframework.boot:spring-boot-starter-aop'
+
+}

@@ -1,0 +1,123 @@
+.container {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  background: #ffffff;
+}
+
+.authen {
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  box-sizing: border-box;
+  padding: 0px 20px;
+}
+
+.authen-tps {
+  font-size: 12px;
+  padding: 10px 5px;
+  color: rgb(145, 145, 145);
+}
+.authen-tps-text {
+  display: block;
+  margin-bottom: 5px;
+}
+.authen-privacy-text {
+  color: rgb(228, 216, 50);
+}
+
+
+.input-wrapper {
+  display: flex;
+  padding: 10px 15px;
+  box-sizing: border-box;
+  border-top: none;
+  border-bottom: .5px solid rgba(0, 0, 0, 0.1);
+}
+.label {
+  width: 100px;
+  flex-shrink: 0;
+  color: #000;
+}
+.input {
+  flex: 1;
+}
+.pcolor {
+  color:#ccc;
+}
+
+
+.schoolNamePicker {
+  width: 45vw;
+}
+.authenTypePicker {
+  width: 84vw;
+  margin: auto;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  border-radius: 16px;
+  background: rgb(240, 240, 240);
+}
+
+
+.upload-wrapper {
+  display: flex;
+  padding: 5px 15px 0px 15px;
+  margin-top: 5px;
+  box-sizing: border-box;
+  border-top: none;
+}
+.image-wrapper {
+  height: 210px;
+  margin: 0 5px;
+  box-sizing: border-box;
+  border-radius: 15px;
+  background: rgb(240, 240, 240);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.add-image {
+  width: 60px;
+  height: 60px;
+}
+.authen-image {
+  width: 100%;
+  height: 210px;
+  border-radius: 15px;
+  vertical-align: middle;
+}
+
+.authen-btns {
+  margin: 25px 20%;
+  text-align: center;
+  box-sizing: border-box;
+  height: 40px;
+  line-height: 40px;
+}
+.submit-btn {
+  background: #f3c11b;
+  color: #000;
+  border-radius: 15px;
+}
+.wait-btn {
+  margin-top: 20px;
+  color: #f09319;
+}
+.authen-back {
+  margin-top: 20px;
+  font-size: 13px;
+  color: red;
+  text-align: center;
+  line-height: 22px;
+}
+
+.miconrenzheng {
+  margin: 30px auto;
+  color: #01a129;
+  font-size: 20px;
+  line-height: 20px;
+}

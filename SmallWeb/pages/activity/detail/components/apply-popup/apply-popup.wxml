@@ -1,0 +1,61 @@
+<wxs src="/utils/wutil.wxs" module="util" />
+
+<view class="popup">
+  <view class="popup-warp">
+
+    <view class="popup-header" bindtap="closeApply">
+      <view class="popup-header-title" bindtap="closeApply"><text class="popup-icon"></text></view>
+      <view class="popup-header-right" bindtap="closeApply">关闭</view>
+    </view>
+    
+    <view class="popup-content">
+      <view class="popup-content-title"> 填写报名信息 </view>
+
+      <view class="contact-wrapper">
+        <view class="wrapper">
+          <text class="label">联系方式：</text>
+          <input class="input" placeholder-class="pcolor" placeholder="微信号/手机号" 
+          value="{{ apply.contact }}" data-key="apply.contact" bindinput="bindConditKeyInput" />
+        </view>
+      </view>
+
+      <view class="nickname-wrapper">
+        <view class="wrapper">
+          <text class="label">称呼：</text>
+          <input class="input" placeholder-class="pcolor" placeholder="留下您的姓名或称呼" 
+          value="{{ apply.nickName }}" data-key="apply.nickName" bindinput="bindConditKeyInput" />
+        </view>
+      </view>
+
+      <view class="popup-content-title"> 确认活动信息 </view>
+      <view class="popup-activity-title">
+        <view class="popup-activity-category">{{ apply.category }}</view>
+        <view class="popup-activity-theme">{{ apply.theme }}</view>
+      </view>
+
+      <view class="popup-activity-info">
+        <icon class="iconfont miconshijian"/>
+        <view> {{ apply.activityStart + " ~ " + apply.activityEnd }}</view>
+      </view>
+
+      <view class="popup-activity-info">
+        <icon class="iconfont micondingwei"></icon>
+        <view class="locat-text">
+          <view class="locat-a">{{apply.locationName}}</view>
+          <view class="locat-b">{{apply.locationAddress}}</view>
+        </view>
+      </view>
+
+      <view class="condit">
+        <view class="condit-item" wx:for="{{ apply.conditArray }}" wx:key="index">
+          <view class="condit-item-text"> {{ item }}</view>
+        </view>
+      </view>
+
+      <view class="popup-tps">*若因故无法到场，请及时在活动页面取消报名，或与主办方联系</view>
+      <view class="popup-confirm" bindtap="submitApply">确认报名</view>
+
+    </view>
+
+  </view>
+</view>

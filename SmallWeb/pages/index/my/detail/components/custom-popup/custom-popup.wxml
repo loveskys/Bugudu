@@ -1,0 +1,19 @@
+<wxs src="/utils/wutil.wxs" module="util" />
+
+<view class="popup">
+  <view class="popup-warp">
+    <view class="popup-header">
+      <text>{{title}}</text>
+      <!-- <view class="popup-close"></view> -->
+      <text class="popup-close" bindtap="closePopup"> × </text>
+    </view>
+    <view class="popup-content">
+      <view class="popup-option {{ util.includes(selectedItems, item) ? 'popup-selected' : '' }}" bindtap="handleOptionTap" wx:for="{{options}}" wx:key="index" data-index="{{index}}">
+        <text>{{item}}</text>
+      </view>
+    </view>
+    <view class="popup-footer">
+      <view class="submitbtn" bindtap="submitSelections">确定</view>
+    </view>
+  </view>
+</view>

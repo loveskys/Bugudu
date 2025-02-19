@@ -1,0 +1,37 @@
+<navigation-bar title="消息中心" back="{{true}}" color="black" background="#FFF"></navigation-bar>
+
+<view class="container">
+
+  <view class="message-title">
+    <view class="message-title-wrap" bindtap="toCommentsAndCollect">
+      <image class="message-title-img" src="/images/message/msg_collect.png"/>
+      <text class="message-title-text">留言与收藏</text>
+      <text wx:if="{{!commentsAndCollectAllRead}}" class="message-title-red"/>
+    </view>
+    <view class="message-title-wrap" bindtap="toActivityMsg">
+      <image class="message-title-img" src="/images/message/msg_activity.png"/>
+      <text class="message-title-text">活动动态</text>
+      <text wx:if="{{!activityMsgAllRead}}" class="message-title-red"/>
+    </view>
+  </view>
+
+
+  <view class="message-cont">
+    <view wx:if="{{officialList.length>0}}">
+      <view class="message-item" wx:for="{{ officialList }}" wx:key="index" data-index="{{index}}" bindtap="toLookMsg">
+        <view class="message-item-headurl">
+          <image wx:if="{{item.userHeadUrl}}" class="message_headurl-image" src="{{item.userHeadUrl}}" />
+          <image wx:else class="message_headurl-image" src="/images/login/logo.png" />
+        </view>
+        <view class="message-item-right">
+          <view class="message-item-theme"> {{ item.msgTheme }} </view>
+          <view class="message-item-text"> {{ item.msgText }} </view>
+        </view>
+        <text wx:if="{{item.isRead==0}}" class="message-title-red"/>
+      </view>
+    </view>
+    <view wx:else class="nulllist"><icon class="miconsousuo1"></icon> 暂无消息 </view>
+  </view>
+  <view class="buttonReadAll" bindtap="readAll">一键已读</view>
+
+</view>

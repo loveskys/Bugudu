@@ -1,0 +1,41 @@
+<wxs src="/utils/wutil.wxs" module="util" />
+
+<view class="popup">
+  <view class="popup-warp">
+    <view class="popup-header">
+      <text class="popup-close" bindtap="closeCondit">取消</text>
+      <view class="popup-title-cont" bindtap="closeCondit"><text class="popup-title"></text></view>
+      <text class="popup-confirm" bindtap="submitCondit">确定</text>
+    </view>
+    
+    <view class="popup-content">
+      <view class="input-wrapper">
+        <text class="label">人数：</text>
+        <input class="input" type="number" placeholder-class="pcolor" placeholder="必填" 
+        value="{{ condit.peopleNum }}" data-key="condit.peopleNum" bindinput="bindConditKeyInput" />
+      </view>
+
+      <view class="input-wrapper">
+        <text class="label">年级：</text>
+        <picker class="grade-select" bindchange="bindGradeSelect" value="{{gradeIndex}}" range="{{gradeArray}}">
+          <view wx:if="{{condit.grade}}" class="grade-select">{{ condit.grade }}</view>
+          <view wx:else style="color: rgb(190, 190, 190);">选填，请选择参加人员年级</view>
+        </picker>
+      </view>
+      
+      <view class="input-wrapper">
+        <text class="label">性别：</text>
+        <picker class="grade-select" bindchange="bindSexSelect" value="{{sexIndex}}" range="{{sexArray}}">
+          <view wx:if="{{condit.sex}}" class="grade-select">{{ condit.sex }}</view>
+          <view wx:else style="color: rgb(190, 190, 190);">选填，请选择参加人员性别</view>
+        </picker>
+      </view>
+
+      <view class="input-wrapper">
+        <text class="label">自定义：</text>
+        <input class="input" placeholder="选填，填写您的要求" placeholder-class="pcolor" value="{{condit.other}}" data-key="condit.other" bindinput="bindConditKeyInput" />
+      </view>
+    </view>
+
+  </view>
+</view>

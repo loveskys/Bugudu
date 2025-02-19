@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--suppress ALL -->
+<mapper namespace="com.lyh.dao.MessageMapper">
+
+    <select id="getMyMsgList" resultType="com.lyh.entity.home.msg.MessageVo">
+        select a.*, CASE WHEN b.msg_id IS NULL THEN 0 ELSE 1 END AS isRead
+        from message a
+        left join message_read b on a.id = b.msg_id AND b.user_id = #{userId}
+        where a.msg_type = 1
+            or (a.msg_type = 2 and a.receive_user_id = #{userId})
+            or a.receive_user_id = #{userId}
+        order by a.create_time desc
+    </select>
+
+
+    <select id="getPageList" resultType="com.lyh.entity.home.msg.MessageVo">
+        select * from message
+        where msg_type = #{msgType}
+        order by create_time desc
+    </select>
+
+    <insert id="insertAllRead" >
+        INSERT INTO message_read(msg_id, user_id)
+        select m.id as msg_id, receive_user_id as user_id from message m
+        where m.receive_user_id = #{userId}
+          and not exists (select 1 from message_read mr
+                                   where mr.msg_id = m.id and mr.user_id = m.receive_user_id)
+    </insert>
+
+</mapper>

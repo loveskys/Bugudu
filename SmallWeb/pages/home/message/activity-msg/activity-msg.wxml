@@ -1,0 +1,25 @@
+<navigation-bar title="活动消息" back="{{true}}" color="black" background="#FFF"></navigation-bar>
+
+<view class="container">
+  <view class="message-cont">
+    <view wx:if="{{msgArray.length>0}}">
+      <view class="message-item" wx:for="{{ msgArray }}" wx:key="index" data-index="{{index}}" bindtap="toLookMsg">
+        <view class="message-item-headurl">
+          <image wx:if="{{item.userHeadUrl}}" class="message_headurl-image" src="{{item.userHeadUrl}}" />
+          <image wx:else class="message_headurl-image" src="/images/my/nullhead.png" />
+        </view>
+        <view class="message-item-right">
+          <view class="message-item-theme" wx:if="{{item.msgType=='6'}}"> {{ item.msgTheme }} </view>
+          <view class="message-item-theme" wx:if="{{item.msgType=='7'}}"> {{ item.msgTheme + ' 报名了您的活动' }} </view>
+          <view class="message-item-theme" wx:if="{{item.msgType=='8'}}"> {{ item.msgTheme + ' 退出了您的活动' }} </view>
+          <view class="message-item-text"> {{ item.msgText }} </view>
+          <view class="copy_contact" wx:if="{{ item.msgType=='7' }}" data-index="{{index}}" catch:tap="copyContact">复制联系方式</view>
+        </view>
+        <text wx:if="{{item.isRead==0}}" class="message-title-red" />
+      </view>
+    </view>
+    <view wx:else class="nulllist">
+      <icon class="miconsousuo1"></icon> 暂无消息
+    </view>
+  </view>
+</view>

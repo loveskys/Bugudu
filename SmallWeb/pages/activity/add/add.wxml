@@ -1,0 +1,129 @@
+<navigation-bar title="创建活动" back="{{true}}" color="black" background="#FFF"></navigation-bar>
+
+<view class="container">
+  <view class="activity">
+    <view class="title">
+      <picker bindchange="bindPickerSelect" value="{{categoryIndex}}" range="{{categoryArray}}" class="title-category">{{ categoryArray[categoryIndex] }} v</picker>
+      <input class="title-input" maxlength="15" placeholder="填写活动标题(15字以内)" value="{{activityInfo.theme}}" data-key="activityInfo.theme" bindinput="bindKeyInput" />
+    </view>
+    <textarea class="intro" placeholder="详细的活动描述有助于找到更多的小伙伴哦" maxlength="100" value="{{activityInfo.intro}}" data-key="activityInfo.intro" bindinput="bindKeyInput" />
+
+
+    <view class="tip">参加者要求</view>
+    <view class="condit">
+      <view class="condit-item" wx:for="{{ activityInfo.conditArray }}" wx:key="index" data-index="{{index}}">
+        <view class="condit-item-text"> {{ item }}</view>
+        <view class="condit-item-delete" bindtap="condit_delete" data-index="{{index}}">×</view>
+      </view>
+      <view class="condit-item-add" bindtap="condit_open">添加</view>
+      <foot-popup style="z-index: 10;" wx:if="{{conditPopupVisible}}" condit="{{activityInfo.condit}}" bind:submitCondit="condit_select" bind:closeCondit="condit_close" />
+    </view>
+
+
+    <view class="tip">活动图片</view>
+    <view class="image-container">
+      <view class="image-wrapper" wx:if="{{activityImg || activityInfo.image}}">
+        <view class="delete-img" bindtap="deleteImage">×</view>
+        <image class="image" src="{{activityImg?activityImg:activityInfo.image}}" bindtap="previewImage" />
+      </view>
+      <view wx:else class="image-wrapper" bindtap="addActImage">封面 必填</view>
+    </view>
+
+    <!-- 人数大于100人需填审核表 -->
+    <view class="tip" wx:if="{{activityInfo.condit.peopleNum>100}}" bind:tap="test">审核表</view>
+    <view class="image-container" wx:if="{{ activityInfo.condit.peopleNum>100 }}">
+      <view class="image-wrapper" wx:if="{{ checkingImg || activityInfo.checkingImage }}">
+        <view class="delete-img" bindtap="deleteCheckingImage">×</view>
+        <image class="image" src="{{checkingImg?checkingImg:activityInfo.checkingImage}}" bindtap="previewCheckingImage" />
+      </view>
+      <view wx:else class="image-wrapper" bindtap="addCheckingImage">审核表 必填</view>
+    </view>
+
+
+    <view class="acv-time">
+      <view class="tip"> 活动时间 </view>
+      <view class="time-cont">
+        <view class="start">
+          <picker mode="date" value="{{startdate}}" start="2024-09-01" end="2026-09-01" bindchange="startdateChange">
+            <view class="picker-data">{{startdate}} </view>
+          </picker>
+          <picker mode="time" value="{{starttime}}" bindchange="starttimeChange">
+            <view class="picker-time">{{starttime}}</view>
+          </picker>
+        </view>
+        至
+        <view class="end">
+          <picker mode="date" value="{{enddate}}" start="2024-09-01" end="2026-09-01" bindchange="enddateChange">
+            <view class="picker-data">{{enddate}} </view>
+          </picker>
+          <picker mode="time" value="{{endtime}}" bindchange="endtimeChange">
+            <view class="picker-time">{{endtime}}</view>
+          </picker>
+        </view>
+      </view>
+    </view>
+
+
+    <view class="tip"> 活动位置 </view>
+    <view class="locat">
+      <view class="locat-icon micondingwei" bindtap="getLocation"></view>
+      <view class="locat-text">
+        <block wx:if="{{activityInfo.location.locationName}}">
+          <view class="locat-a">{{activityInfo.location.locationName}}</view>
+          <view class="locat-b">{{activityInfo.location.locationAddress}}</view>
+        </block>
+        <block wx:else>
+          <view class="locat-a">点击图标自动获取当前定位</view>
+          <view class="locat-b">或手动输入地址</view>
+        </block>
+      </view>
+    </view>
+    <textarea class="locat-address" placeholder="详细地址，如A栋活动中心门口..." maxlength="100" value="{{activityInfo.address}}" data-key="activityInfo.location.address" bindinput="bindKeyInput" />
+
+
+    <view class="tip">联系方式</view>
+    <view class="contact">
+      <picker bindchange="bindPickerSelect" value="{{contactIndex}}" range="{{contactArray}}">
+        <view class="contact-select">{{ contactArray[contactIndex] }} v
+          <!-- <image src="/images/activity/add/swiperArrow.png" /> -->
+        </view>
+      </picker>
+
+      <view wx:if="{{ contactIndex == 2 }}">
+
+        <view class="image-wrapper" wx:if="{{contactImg || activityInfo.contactImage}}">
+          <view class="delete-img" bindtap="deleteContactImage">×</view>
+          <image class="image" src="{{contactImg?contactImg:activityInfo.contactImage}}" bindtap="previewContactImage"/>
+        </view>
+        <view wx:else class="contact-qrcode" bind:tap="addContactImage">活动群二维码/主办方二维码</view>
+        <!-- <view wx:else class="image-wrapper" bindtap="addContactImage">
+          <image class="add-img" src="/images/activity/add.png"/>
+        </view> -->
+      </view>
+      
+      <view wx:else="">
+        <input class="contact-input" maxlength="30" value="{{activityInfo.contact}}" data-key="activityInfo.contact" bindinput="bindKeyInput" />
+      </view>
+
+    <!-- <view class="tip">活动图片</view>
+    <view class="image-wrapper" wx:if="{{contactImg || activityInfo.contactImage}}">
+      <view class="delete-img" bindtap="deleteContactImage">×</view>
+      <image class="image" src="{{contactImg?contactImg:activityInfo.contactImage}}" bindtap="previewContactImage"/>
+    </view>
+    <view wx:else class="image-wrapper" bindtap="addContactImage">
+      <image class="add-img" src="/images/activity/add.png"/>
+    </view> -->
+
+  </view>
+  </view>
+
+  <view class="foot">
+    <view class="foot-item" bindtap="savedraft">
+      <icon class="miconcaogao04"></icon>存草稿
+    </view>
+    <view class="foot-item" wx:if="{{ isSubmitted }}" bindtap="deleteActivity">
+      <icon class="miconyulan">删除</icon>
+    </view>
+    <view class="foot-item submit" bindtap="submit"> 发布 </view>
+  </view>
+</view>

@@ -1,0 +1,31 @@
+<view class="applicants">
+  <!-- 透明灰色背景蒙版，点击退出组件 -->
+  <view class="applicants-mask" bind:tap="closeApplicants"></view>
+
+  <!-- 真正的活动报名者容器 -->
+  <view class="applicants-container">
+    <view class="applicants-header">活动参与者信息与联系方式</view>
+
+    <view class="applicants-content" wx:for="{{applicantsData}}" wx:key="index">
+      <view class="applicants-wrapper">
+        <!-- 点击头像跳转用户主页 -->
+        <image src="{{item.userHeadUrl}}" data-index="{{index}}" class="applicants-avatar" bind:tap="toUserPreview" />
+
+        <view class="wrapper">
+          <view class="wrapper-text">{{item.nickName}}</view>
+          <view class="authen-container">
+            <!-- 待补充的学校信息 -->
+            <!-- <view class="authen_item">{{item.authenInfo[0]}}</view> -->
+            <view class="authen_item">{{item.grade}}</view>
+          </view>
+        </view>
+
+        <view class="wrapper">
+          <view class="wrapper-text">{{item.contact}}</view>
+          <view class="authen_item" data-index="{{index}}" bind:tap="copyContact">复制联系方式</view>
+        </view>
+
+      </view>
+    </view>
+  </view>
+</view>

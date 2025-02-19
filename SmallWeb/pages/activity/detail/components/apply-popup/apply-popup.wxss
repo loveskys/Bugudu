@@ -1,0 +1,222 @@
+/** 
+自定义组件使用阿里icon图标必须单独引入
+*/
+@import "../../../../../utils/mycss/iconfont.wxss";
+/* .micondingwei {
+    font-family: "iconfont" !important;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+} */
+
+
+.popup {
+  position: fixed;
+  z-index: 90;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+.popup-warp {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  box-sizing: border-box;
+  background: #ffffff;
+  border-radius: 20px;
+  padding-bottom: 30px;
+}
+
+
+
+
+.popup-header {
+  padding: 15px 0px;
+  display: flex;
+  color: rgb(182, 182, 182);
+  justify-content: center;
+  /* border: 1px solid; */
+  position: relative;
+}
+.popup-header-title {
+  width: 60px;
+  text-align: center;
+  display: flex;
+}
+.popup-header-right {
+  position: absolute;
+  font-weight: bold;
+  right: 50rpx;
+  color: rgb(255, 38, 0);
+}
+.popup-icon {
+  border-radius: 5px;
+  width: 50px;
+  height: 6px;
+  background: rgb(187, 187, 187);
+}
+
+
+
+
+
+
+.popup-content {
+  padding: 0px 22px 10px 22px;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+}
+.popup-content-title {
+  font-weight: bold;
+  font-size: 20px;
+  padding: 10px 0;
+}
+.contact-wrapper {
+  background: #FFF6DB;
+  border-radius: 15px 15px 0 0;
+}
+.nickname-wrapper {
+  margin-top: 2px;
+  background: #FFF6DB;
+  border-radius: 0 0 15px 15px;
+}
+.wrapper {
+  display: flex;
+  padding: 10px 2px;
+  box-sizing: border-box;
+  align-items: center;
+}
+.label {
+  width: 90px;
+  flex-shrink: 0;
+  font-weight: bold;
+  color: #000;
+}
+.input {
+  flex: 1;
+  padding: 1px;
+  text-align: start;
+}
+
+
+
+
+
+.popup-activity-title {
+  padding: 5px 0;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+}
+.popup-activity-category {
+  font-size: 13px;
+  width: 60px;
+  height: 22px;
+  line-height: 22px;
+  display: flex;
+  box-sizing: border-box;
+  justify-content: center;
+  border-radius: 15px;
+  background: #FFC300;
+  color: #fff;
+}
+.popup-activity-theme {
+  flex: 1;
+  color: #000;
+  padding-left: 4px;
+  text-align: start;
+}
+
+
+
+
+
+.popup-activity-info {
+  padding: 3px 0;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+}
+.miconshijian {
+  margin-right: 5px;
+  margin-bottom: 5px;
+  font-size: 20px;
+  color: #FFC300;
+}
+.micondingwei {
+  margin-right: 5px;
+  margin-bottom: 20px;
+  font-size: 20px;
+  color: #FFC300;
+}
+.locat-text {
+  flex: 1;
+  display: flex;
+  text-align: start;
+  flex-direction: column;
+}
+.locat-a {
+  flex: 1;
+  font-weight: bold;
+}
+.locat-b {
+  flex: 1;
+  font-size: 13px;
+  color: #666;
+}
+
+
+
+.condit {
+  margin-left: 22px;
+  padding: 5px 0;
+  display: flex;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  gap: 8px;
+}
+.condit-item {
+  display: flex;
+  height: 30px;
+  padding: 0 20px;
+  border-radius: 15px;
+  box-sizing: border-box;
+  font-size: 13px;
+  background: #f7ebc6;
+  align-items: center;
+  white-space: wrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  flex-shrink: 0;
+}
+.condit-item-text {
+  flex: 1;
+}
+.pcolor {
+  color: rgb(190, 190, 190);
+}
+
+
+.popup-tps {
+  margin-top: 10px;
+  font-size: 11px;
+  color: rgb(150, 150, 150);
+}
+
+
+.popup-confirm {
+  margin: 0 auto;
+  margin-top: 12px;
+  width: 180px;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 15px;
+  text-align: center;
+  color: #000;
+  background: #FFC300;
+}

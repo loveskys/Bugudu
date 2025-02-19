@@ -1,0 +1,45 @@
+<view class="container">  
+  <view class="header">  
+    <text class="title">关于我们</text>  
+  </view>  
+  <view class="content" hidden="true">  
+    <image class="logo" src="/images/login/logo.png" mode="aspectFit"></image>  
+    <text class="app-name">不咕嘟</text>  
+    <text class="tagline">  Not Alone</text>  
+    <view class="description">  
+      <text>「不咕嘟」源自哈工深学生团队国家级大创项目，是由哈工深在读学生群体共同打造的活动组织线上平台，致力于帮助深圳大学城学生群体解决“找搭子难”的痛点。</text>  
+      <text>平台旨在通过丰富多样的活动为学生群体提供一个“找志同道合”的场所。</text>  
+      <text>无论是科研竞赛组队、活动娱乐找搭子、兴趣爱好社团活动、拼车拼团还是学习帮扶，「不咕嘟」都愿意助你一臂之力。</text>  
+      <text>此外，「不咕嘟」重视公益，将会在运营过程中持续为公益事业付出。大家的每一次参与都将会为深圳市公益事业有所助力。</text>  
+    </view>  
+  </view>  
+  <view class="team-card">  
+    <text class="team-title">制作人员</text>  
+    <view class="team-grid">  
+      <view class="team-column">  
+        <text class="team-role">总策划</text>  
+        <text class="team-member team-leader">庄泓铠 H.K.</text>  
+      </view>  
+      <view class="team-column">  
+        <text class="team-role">技术组</text>  
+        <text class="team-member team-leader">阙若豪 R.H.</text>  
+        <text class="team-member">陈嘉懿 Joyce</text>  
+        <text class="team-member">柯浩闻 H.W.</text>  
+        <text class="team-member">李启源 Drunk</text>  
+        <text class="team-member">李怡君 Cindy</text>  
+        <text class="team-member">连凯 Empty</text>  
+      </view>  
+      <view class="team-column">  
+        <text class="team-role">产品组</text>  
+        <text class="team-member team-leader">卢俊睿 Tillusion</text>  
+        <text class="team-member">胡长荣 C.R.</text>  
+        <text class="team-member">胡憬丹 Rence</text>  
+      </view>  
+      <view class="team-column">  
+        <text class="team-role">商业组</text>  
+        <text class="team-member team-leader">杨金阳 J.Y.</text>  
+        <text class="team-member">王宇翔 Tarlos</text>  
+      </view>  
+    </view>  
+  </view>  
+</view>

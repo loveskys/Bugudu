@@ -1,0 +1,21 @@
+<navigation-bar title="登录" back="{{false}}" color="black" background="#FFF"></navigation-bar>
+
+<view class="container">
+  <view class="login">
+    <view class="logininfo">
+      <image class="logo" src="/images/login/logo.png"/>
+
+      <view class="login-btn">
+        <checkbox-group class="privacy" bindchange="checkboxChange">
+          <checkbox class="privacy-checkbox" color="rgb(158, 148, 10)">阅读并同意</checkbox>
+          <text class="privacy-text" bindtap="toProtocol">⟪不咕嘟用户协议⟫</text>
+          <text class="privacy-checkbox">及</text>
+          <text class="privacy-text" bindtap="toPrivacy">⟪不咕嘟隐私政策⟫</text>
+        </checkbox-group>
+        <text class="tologin" bindtap="wxlogin">进入小程序</text>
+        <!-- <text class="phonelogin" bindtap="phonelogin">暂时跳过登录</text> -->
+      </view>
+    </view>
+
+  </view>
+</view>

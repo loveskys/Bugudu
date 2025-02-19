@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "navigation-bar": "/components/navigation-bar/navigation-bar",
+    "apply-popup": "components/apply-popup/apply-popup",
+    "leave": "components/leave/leave",
+    "applicants": "components/applicants/applicants"
+  }
+}

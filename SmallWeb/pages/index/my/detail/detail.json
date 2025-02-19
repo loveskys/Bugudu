@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "navigation-bar": "/components/navigation-bar/navigation-bar",
+    "custom-popup": "components/custom-popup/custom-popup"
+  }
+}

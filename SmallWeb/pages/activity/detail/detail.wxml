@@ -1,0 +1,159 @@
+<navigation-bar title="活动详情" back="{{!isshare}}" homeButton="{{isshare}}" color="black" background="#FFF"></navigation-bar>
+
+<view class="container">
+
+  <view class="preview">
+    <view class="title">
+      <view class="category">{{ activityInfo.category }}</view>
+      <view class="theme">{{ activityInfo.theme }}</view>
+    </view>
+    <view class="intro"> {{activityInfo.intro}} </view>
+    <view class="condit">
+      <view class="condit-item" wx:for="{{ activityInfo.conditArray }}" wx:key="index">
+        <view class="condit-item-text"> {{ item }}</view>
+      </view>
+    </view>
+
+    <view class="promulgator" bindtap="toUserPreview">
+      <view class="promulgator-img">
+        <image class="user-headimg" src="{{userInfo.headUrl}}" />
+        <image wx:if="{{userInfo.category==1}}" class="user-verification-developer" src="{{ vertification[0] }}" alt="Developer Verification"/>
+        <image wx:if="{{userInfo.category==2}}" class="user-verification" src="{{ vertification[1] }}" alt="Developer Verification"/>
+        <image wx:if="{{userInfo.category==3}}" class="user-verification" src = "{{ vertification[2] }}" alt="Developer Verification"/>
+      </view>
+      <view class="promulgator-user">
+        <view class="promulgator-user-title">
+          {{userInfo.nickName}}
+          <icon wx:if="{{userInfo.sex==1}}" class="miconsexm" />
+          <icon wx:if="{{userInfo.sex==2}}" class="miconsexw" />
+        </view>
+        <view class="promulgator-user-authen">
+          <view wx:for="{{displayAuthenArray}}" wx:key="id">
+            <view class="authen_item">{{ item }}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+
+    <view class="tip">
+      <view class="tip-item {{highlightedIndex === 1 ? 'tip_selected' : '' }}" bindtap="toActivityTag" data-index="1">活动详情</view>
+      <view class="tip-item {{highlightedIndex === 2 ? 'tip_selected' : '' }}" bindtap="toActivityTag" data-index="2">
+        已报名{{activityInfo.enrolledRatio }}</view>
+      <view class="tip-item {{highlightedIndex === 3 ? 'tip_selected' : '' }}" bindtap="toActivityTag" data-index="3">留言</view>
+    </view>
+    <view class="act-detail" wx:if="{{ highlightedIndex === 1 }}">
+      <view class="act-time">
+        <icon class="miconshijian" />
+        <view> {{ activityInfo.activityStart + " ~ " + activityInfo.activityEnd }}</view>
+      </view>
+      <view class="act-locat" bindtap="showLocal">
+        <icon class="locat-icon micondingwei"></icon>
+        <view class="locat-text">
+          <view class="locat-a">{{activityInfo.locationName}}</view>
+          <view class="locat-b">{{activityInfo.locationAddress}}</view>
+        </view>
+      </view>
+      <view class="act-image-cont">
+        <image class="act-image" src="{{activityInfo.image}}" bindtap="previewImage" mode="widthFix" style="width: 100%;border-radius: 16px;" show-menu-by-longpress />
+        <!-- 公众号文章显示 -->
+        
+        <rich-text wx:if="{{activityInfo.wxUrl != null}}" style="padding: 1em;" nodes="{{wxcontent}}"/>
+        <!-- <view wx:if="{{activityInfo.wxUrl == null}}">非公众号文章</view> -->
+        
+      </view>
+    </view>
+
+
+    <view class="act-person" wx:if="{{ highlightedIndex === 2 }}">
+      <view class="act-person-item" wx:for="{{ activityInfo.enrolledDetails }}" wx:key="index">
+        <image wx:if="{{item.userId}}" class="person-headUrl {{ item.userId && !item.userHeadUrl ? 'person-headUrl-noauthen':'' }}" src="{{item.userHeadUrl}}" bindtap="toUserDetail" data-index="{{index}}">
+          <icon wx:if="{{item.sex==1}}" class="person-sex miconsexm" />
+          <icon wx:if="{{item.sex==2}}" class="person-sex miconsexw" />
+        </image>
+        <image wx:if="{{!item.userId}}" class="person-headUrl person-headUrl-null" src="{{emptyHead}}" />
+      </view>
+    </view>
+
+
+    <view class="remark" wx:if="{{ highlightedIndex === 3 }}">
+
+      <view wx:if="{{ leaves.length === 0 }}" class="no-comments">
+        <image class="no-comments-image" src="/images/my/no_added_activities.png" mode="aspectFit" />
+        <view class="no-comments-text">这里还没有留言哦~</view>
+      </view>
+
+      <view wx:for="{{ leaves }}" wx:key="index">
+        <view class="r-head">
+          <image class="r-head-url" src="{{item.sendHeadUrl}}" bindtap="toLeavesUserDetail" data-index="{{index}}" />
+          <view class="r-head-name">{{item.sendNickname}}
+            <span wx:if="{{item.sendSex==1}}" class="miconsexm" />
+            <span wx:else class="miconsexw" />
+          </view>
+          <view class="r-head-time"> {{item.createTime}} </view>
+        </view>
+        <view class="r-cont"> {{item.messageCont}} </view>
+      </view>
+    </view>
+    
+  </view>
+  
+
+  <!-- 横幅 -->
+  <!-- 若用户为活动发起者 -->
+  <view wx:if="{{ activityInfo.createBy == authenInfo.createBy}}">
+    <view wx:if="{{ authStatus == '2' }}" class="foot-authen">
+      <image class="foot-authen-img" src="/images/activity/detail/examine.png" mode="aspectFit"/>
+      <view class="foot-authen-text">
+        活动已发布成功，点击查看即可获取报名者的昵称与联系方式。
+      </view>
+      <view class="foot-authen-button" bind:tap="toApplicantsInfo">查看</view>
+    </view>
+  </view>
+
+  <!-- 若用户为活动参加者 -->
+  <view wx:else="{{ activityInfo.createBy != authenInfo.createBy}}">
+
+    <view wx:if="{{ activityInfo.isApply == 0 && (authStatus == '0' || authStatus == '1') }}" class="foot-authen">
+      <image class="foot-authen-img" src="/images/activity/detail/exception.png" mode="aspectFit"/>
+      <view class="foot-authen-text">
+        您已预报名，待您实名认证后自动报名成功\n若超时未认证，预报名12小时后会自动取消。
+      </view>
+      <view class="foot-authen-button" bind:tap="toUserAuthen">去认证</view>
+    </view>
+
+    <view wx:if="{{ activityInfo.isApply == 0 && authStatus == '2' }}" class="foot-authen">
+      <image class="foot-authen-img" src="/images/activity/detail/exception.png" mode="aspectFit"/>
+      <view class="foot-authen-text">
+        您已报名活动，点击即可查看活动发起者联系方式。
+      </view>
+      <view class="foot-authen-button" bind:tap="toUserInfo">查看</view>
+    </view>
+  </view>
+
+
+
+
+  <view class="foot">
+    <icon class="miconliaotian" bindtap="sendLeave_open" />
+    <icon wx:if="{{activityInfo.isCollect}}" class="miconshoucang-copy" bindtap="favorite" />
+    <icon wx:else class="miconshoucang" bindtap="favorite" />
+    <button type="default" open-type="share" class="clear-style">
+      <icon class="miconfenxiang_2" bindtap="onShareTap" />
+    </button>
+    <text wx:if="{{activityInfo.itSme==1}}" class="apply" bindtap="toEdit">编辑</text>
+    <text wx:if="{{activityInfo.isApply==1}}" class="apply" bindtap="toApply">报名</text>
+    <text wx:if="{{activityInfo.isCancelApply==1}}" class="apply cancel" bindtap="toCancelApply">取消报名</text>
+    <!-- activityInfo.isApply和activityInfo.isCancelApply是否可以合并为一个变量？ -->
+
+    <apply-popup style="z-index: 10;" wx:if="{{applyPopupVisible}}" apply="{{apply}}" bind:submitApply="apply_submit" bind:closeApply="apply_close" />
+
+    <leave style="z-index: 10;" wx:if="{{leavePopupVisible}}" activityId="{{activityInfo.id}}" bind:closeSendLeave="sndLeave_close" />
+
+    <view wx:if="{{isshare}}" class="miconshouye" bindtap="backHome"></view>
+
+  </view>
+
+</view>
+
+<applicants wx:if="{{applicantsVisible}}" applicants="{{applicants}}" bind:closeApplicants="applicants_close"/>

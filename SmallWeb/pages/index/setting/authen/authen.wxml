@@ -1,0 +1,75 @@
+<navigation-bar title="校园身份认证" back="{{true}}" color="black" background="#FFF"></navigation-bar>
+<view class="container">
+
+ <view wx:if="{{ authStatus == '0' || authStatus == '3' }}" class="authen">
+    <view class="input-wrapper">
+      <text class="label">所在学校:</text>
+      <picker class="schoolNamePicker" value="{{schoolNameIndex}}" range="{{schoolNameArray}}" bindchange="bindPickerschoolName">
+        <view wx:if="{{authenInfo.schoolName}}" class="schoolNamePicker">{{ schoolNameArray[schoolNameIndex] }}</view>
+        <view wx:else class="pcolor">请选择您所在的学校</view>
+      </picker>
+    </view>
+    <view class="input-wrapper">
+      <text class="label">学号信息:</text>
+      <input class="input" type="text" value="{{authenInfo.studentNum}}" placeholder="请填写学号信息" placeholder-class="pcolor" data-key="authenInfo.studentNum" bindinput="bindKeyInput" />
+    </view>
+    <view class="input-wrapper">
+      <text class="label">再次填写:</text>
+      <input class="input" type="text" value="{{authenInfo.studentNum2}}" placeholder="请确保两次填写的学号一致" placeholder-class="pcolor" data-key="authenInfo.studentNum2" bindinput="bindKeyInput" />
+    </view>
+
+    <view class="authen-tps">
+      <text class="authen-tps-text">*请注意：同一学号仅可认证一个帐号，认证成功后，不可解绑或更换，请确保学号信息真实有效；</text>
+      <text class="authen-tps-text">*学号和证件等收集的个人信息只做身份认证用途，并依据
+        <text class="authen-privacy-text" bindtap="toPrivacy">⟪不咕嘟服务及个人隐私协议⟫</text>进行保密管理；
+      </text>
+    </view>
+
+    <picker class="authenTypePicker" value="{{authenTypeIndex}}" range="{{authenTypeArray}}" bindchange="bindPickerAuthenType">
+      <view wx:if="{{authenInfo.authenType}}" class="authenTypePicker">{{ authenTypeArray[authenTypeIndex] }}</view>
+      <view wx:else style="color: #ccc;">请选择用于认证的证件</view>
+    </picker>
+
+    <view class="upload-wrapper">
+      <text class="label">上传证件照片:</text>
+    </view>
+    <view class="authen-tps">
+      <text class="authen-tps-text">*请确保照片能清晰展示学校、学号、入学年份等信息，并与所填写信息一致；</text>
+    </view>
+    <view class="image-wrapper" bindtap="addAuthenImg">
+      <image wx:if="{{authenImg || authenInfo.authenImg }}" class="authen-image" src="{{ authenImg?authenImg:authenInfo.authenImg }}" />
+      <image wx:else class="add-image" src="/images/my/authenAddPic.png" />
+    </view>
+  </view>
+
+  <view wx:else class="authen">
+    <view class="input-wrapper">
+      <text class="label">学校名称</text>
+      <text class="input">{{authenInfo.schoolName}}</text>
+    </view>
+    <view class="input-wrapper">
+      <text class="label">学号</text>
+      <text class="input">{{authenInfo.studentNum}}</text>
+    </view>
+    <view class="input-wrapper">
+      <text class="label">年级</text>
+      <text class="input">{{authenInfo.grade?authenInfo.grade:''}}</text>
+    </view>
+    <view class="upload-wrapper">
+      <text class="label">{{authenInfo.authenType}}</text>
+    </view>
+    <view class="image-wrapper" style="margin: 2px 5px;" bindtap="previewImage">
+      <image class="authen-image" src="{{authenInfo.authenImg}}" />
+    </view>
+  </view>
+
+
+<view class="authen-btns">
+  <view wx:if="{{ authStatus=='0'|| authStatus=='3' }}" class="submit-btn" bindtap="submit">提交</view>
+  <view wx:if="{{ authStatus=='1' }}" class="wait-btn">已提交，请等待系统审核，审核会在1个工作日内完成</view>
+  <view wx:if="{{ authStatus=='2' }}" class="authen-ok miconrenzheng">已通过认证</view>
+  <view wx:if="{{ authStatus=='3' }}" class="authen-back">您的认证未通过审核，原因是：{{ authenInfo.cont?authenInfo.cont:'' }}，请重新提交</view>
+</view>
+
+
+</view>

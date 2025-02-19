@@ -1,0 +1,92 @@
+<!-- <navigation-bar back="{{!isshare}}" color="black" background="#FFF"></navigation-bar> -->
+
+<view class="container">
+  <view class="title">
+    <view class="myInfo">
+      <!-- <icon class="setting miconshezhi" bindtap="toSetting"></icon> -->
+      <view class="headView">
+        <image wx:if="{{userInfo.headUrl}}" class="headportrait" src="{{userInfo.headUrl}}" />
+        <image wx:else class="headportrait" src="/images/my/nullhead.png" />
+        <image wx:if="{{userInfo.category==1}}" class="user-verification-developer" src="{{ vertification[0] }}" alt="Developer Verification"/>
+        <image wx:if="{{userInfo.category==2}}" class="user-verification" src="{{ vertification[1] }}" alt="Developer Verification"/>
+        <image wx:if="{{userInfo.category==3}}" class="user-verification" src = "{{ vertification[2] }}" alt="Developer Verification"/>
+      </view>
+      <view class="t_userinfo">
+        <view class="t_username">{{ userInfo.nickName?userInfo.nickName:"" }}
+          <icon wx:if="{{userInfo.sex==0}}" class="miconweizhixingbie" />
+          <icon wx:if="{{userInfo.sex==1}}" class="miconsexm" />
+          <icon wx:if="{{userInfo.sex==2}}" class="miconsexw" />
+        </view>
+
+        <view class="t_userauthen" wx:if="{{userInfo.myHomeAuthenArray.length>0}}">
+          <!-- <view wx:for="{{userInfo.myHomeAuthenArray}}" wx:key="id">
+          <view class="authen_item">{{ item }}</view>
+        </view> -->
+          <view class="authen_item">{{ userInfo.myHomeAuthenArray[0] }}</view>
+          <view class="authen_item">{{ userInfo.myHomeAuthenArray[1] }}</view>
+        </view>
+        <view wx:else class="t_userauthen" style="margin-left: 2px;" bindtap="toUserAuthen">该用户还未认证</view>
+      </view>
+
+    </view>
+
+    <view class="curriculum">
+      <view class="c_textarea" maxlength="300">
+        {{ userInfo.intro?userInfo.intro:"你还没介绍自己哦~" }}
+      </view>
+    </view>
+
+    <view class="interest">
+      <view class="hobby">
+        <view class="hobby-cont">
+          <view class="hobby-cont-item" wx:for="{{hobbyArray}}" wx:key="id">{{ item }}</view>
+        </view>
+      </view>
+    </view>
+
+
+  </view>
+
+
+  <view class="activity-plate">
+    <view class="plate">
+      <view class="plate-item {{plateIndex === 1 ? 'plate-selected' : '' }}" bindtap="toPlateTag" data-index="1">参与</view>
+      <view class="plate-item {{plateIndex === 2 ? 'plate-selected' : '' }}" bindtap="toPlateTag" data-index="2">发布</view>
+    </view>
+
+  </view>
+
+  <!-- 如果未参加/发布/收藏活动 -->
+  <view wx:if="{{activityList.length === 0}}" class="no-activities">
+    <view wx:if="{{plateIndex === 1}}">
+      <image class="no-activities-image" src="/images/my/no_favorite_activities.png" mode="aspectFit" />
+      <view class="no-activities-text">你还没有参加过活动哦~</view>
+    </view>
+    <view wx:if="{{plateIndex === 2}}">
+      <image class="no-activities-image" src="/images/my/no_added_activities.png" mode="aspectFit" />
+      <view class="no-activities-text">你还没有发布过活动哦~</view>
+    </view>
+  </view>
+
+
+  <scroll-view type="custom" scroll-y>
+
+    <grid-view class="page_grid_view" type="masonry" main-axis-gap="15" cross-axis-gap="15" cross-axis-count="2">
+      <view class="page_item" wx:for="{{activityList}}" wx:key="index" data-index="{{index}}" bindtap="toActivityItem">
+        <image class="page_image" src="{{item.image}}" mode="widthFix">
+          <view style="background: #FFC300" class="page-category">{{item.RelativeDate}}</view>
+        </image>
+        <view class="page_cont">
+          <view class="page_head">
+            <image class="page_headimg" src="{{item.headUrl}}" />
+          </view>
+          <view class="page_text">
+            <text class="page_text_title">{{item.theme}}</text>
+            <text class="page_text_num"> {{item.enrolledRatio }} 人</text>
+          </view>
+        </view>
+      </view>
+    </grid-view>
+  </scroll-view>
+
+</view>

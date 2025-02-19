@@ -1,0 +1,216 @@
+.container {
+  background: #fff;
+  /* overflow-y: auto;
+  background: #fff; */
+  box-sizing: border-box;
+  padding-top: 2px;
+}
+
+.search-title {
+  display: flex;
+  box-sizing: border-box;
+  padding: 0 10px;
+}
+
+.search-icon {
+  width: 20px;
+  height: 20px;
+  padding: 5px;
+  margin-top: -3px;
+  font-size: 20px;
+  line-height: 10px;
+}
+.search-input {
+  flex: 1;
+  padding: 6px 10px;
+  margin-left: 5px;
+  border-radius: 15px;
+  background: rgb(241, 241, 241);
+}
+
+
+.history-cont {
+  margin-top: 20px;
+  padding: 0 20px;
+  box-sizing: border-box;
+  font-size: 18px;
+}
+.history-item {
+  margin: 10px 0px;
+  display: flex;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  gap: 8px;
+}
+.history-item-text {
+  display: flex;
+  height: 25px;
+  line-height: 25px;
+  padding: 0 10px;
+  border-radius: 20px;
+  box-sizing: border-box;
+  font-size: 13px;
+  color: #000;
+  background: #dddddd;
+  justify-content: center;
+  align-items: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  flex-shrink: 0;
+}
+
+.search-cont {
+  /* padding: 0 20px; */
+  /* overflow-y: auto; */
+  box-sizing: border-box;
+}
+
+
+.plate {
+  margin-top: 20px;
+  padding: 0 10px;
+  display: flex;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.plate-item {
+  font-size: 20px;
+  line-height: 18px;
+  padding: 0 5px;
+  color: #F8D773;
+  box-sizing: border-box;
+  display: flex;
+  width: 20%;
+  justify-content: center;
+  font-weight: bold;
+}
+.plate-selected {
+  font-size: 20px;
+  color: #ffc300;
+  font-weight: bold;
+  box-sizing: border-box;
+}
+
+
+
+.plate-page {
+  margin-top: 10px;
+  min-height: 50vh;
+  box-sizing: border-box;
+  justify-content: center;
+}
+.page_grid_view {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 30px 60px 30px;
+}
+.page_item {
+  box-sizing: border-box;
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 15px;
+  /* box-shadow: 0 14px 18px rgba(0, 0, 0, 0.2); 阴影效果*/ 
+  background-color: #F2F2F2;
+  /* border: 1px solid rgba(0, 0, 0, 0.1); */
+}
+.page_image {
+  width: 100%;
+  max-height: 500rpx;
+  border-radius: 15px;
+  vertical-align: bottom;
+  position: relative;
+}
+.page-category {
+  position: absolute;
+  top: 10rpx;
+  left: 10rpx;
+  font-weight: 600; 
+  border-radius: 20rpx;
+  padding: 6rpx 20rpx;
+  font-size: 22rpx;
+  line-height: 26rpx;
+  color:rgba(255, 255, 255,0.8);
+}
+.page_cont {
+  width: 100%;
+  height: 30%;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+}
+.page_head {
+  width: 25%;
+  height: 30px;
+  box-sizing: border-box;
+  text-align: center;
+  margin-top: 10rpx;
+}
+.page_headimg {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  vertical-align: bottom;
+}
+.page_text {
+  width: 70%;
+  height: 100%;
+  padding: 16rpx 0 8rpx 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  margin-top:-10rpx;
+}
+.page_text_title {
+  font-weight: 550;
+  font-size: 24rpx;
+  box-sizing: border-box;
+  width: 95%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color:#646464;
+  margin-left: 5rpx;
+  margin-top: 6rpx;
+}
+.page_text_num {
+  font-size: 22rpx;
+  color: #979797;
+  margin-left: 5rpx;
+  
+}
+.nulllist{
+  margin-left: 5%;
+  margin-top: 5%;
+}
+.promulgator{
+  width: 48%; /* 保证两个项目并排 */
+  margin-bottom: 10px; /* 每行之间留一些间距 */
+  box-sizing: border-box; /* 使padding不会影响宽度计算 */
+  background-color: #f2f2f2; /* 示例背景色，可以根据需要调整 */
+  border-radius: 8px;
+  padding: 10px;
+  /* border: 2px solid #ffffff; */
+}
+.promulgator-img{
+  width: 120rpx;
+  height: 120rpx;
+  box-sizing: border-box;
+  text-align: center;
+  margin-top: 10rpx;
+}
+.user-headimg{
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  vertical-align: bottom;
+}
+.user_page{
+  display: flex;
+  flex-wrap: wrap; /* 允许换行 */
+  justify-content: space-between; /* 元素间距 */
+  padding: 10px;
+}

@@ -1,0 +1,375 @@
+.container {
+  box-sizing: border-box;
+  padding-bottom: 120rpx;
+  background-color: #FFFFFF;
+}
+
+/* 预览部分 */  
+.preview {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  padding: 30rpx 50rpx 60rpx 50rpx;
+  position: relative;
+}  
+
+/* 标题部分 */  
+.title {
+  box-sizing: border-box;  
+  display: flex;  
+  align-items: center;  
+  position: relative;  
+  margin-top: 10px;
+}  
+
+.category {  
+  margin-left: 12px;  
+  padding: 0 16px;  /* 增加内边距以增加内部空间 */  
+  height: 36px;  /* 增高以更好地满足视觉比例 */  
+  line-height: 34px;  
+  display: flex;  
+  justify-content: center;  
+  align-items: center;  
+  border-radius: 20px; 
+  font-weight: bold;
+  background: #FFC300;  /* 使用渐变增加层次感和趣味性 */  
+  color: #FFFFFF;  /* 略微加深的文字颜色，增强对比 */  
+}  
+.line {
+  font-size: 30px;  
+  padding-left: 30rpx;
+  padding-bottom: 10rpx;
+}
+.theme {  
+  flex: 1;  
+  margin-left: 15px;  
+  padding: 10px; /* 增加一点内边距 */  
+  color: #353535;  
+  font-size: 22px;  
+  font-weight: bold;  
+  letter-spacing: 0.5px;  
+  position: relative;  
+  border-radius: 8px; /* 圆角 */ 
+}  
+
+.theme:hover {  
+  transform: translateY(-2px); /* 提升的悬停效果 */  
+}
+/* 简介部分 */
+.intro {  
+  font-family: 'Arial', sans-serif;  
+  font-size: 16px;  
+  line-height: 1.8;  
+  color: #595959;  
+  border-radius: 10px;  
+  padding: 8px;
+  margin: 40rpx 10rpx;   
+}  
+
+/* 条件部分 */  
+.condit {  
+  padding:0;  
+  display: flex;  
+  flex-wrap: wrap;  
+  box-sizing: border-box;  
+  gap: 15px;  
+}  
+.condit-item {  
+  display: flex;  
+  height: 40px;  
+  padding: 0 30px;  
+  border-radius: 20px;  
+  box-sizing: border-box;  
+  font-size: 17px;  
+  background: #FFF6DB; 
+  align-items: center;  
+  white-space: nowrap;  
+  overflow: hidden;  
+  font-weight:520;
+  text-overflow: ellipsis;  
+  font-weight: bold;
+}
+
+/* 发布者部分 */  
+.promulgator {  
+  margin-top: 18px;  
+  display: flex;  
+  background: #FFF6DB; 
+  border-radius: 22px;  
+  align-items: center;  
+  padding: 15px;  
+}  
+/* 头像 */  
+.user-headimg {  
+  opacity: 1;
+  width: 55px;  
+  height: 55px;  
+  border-radius: 50%;  
+  border: 2px solid #EEE;  
+  margin-right: 15px;  
+}
+/* 用户名 */  
+.promulgator-user {  
+  font-weight: bold;
+  flex: 1;  
+}  
+
+/* 用户标题 */  
+.promulgator-user-title {  
+  display: flex;  
+  align-items: center;  
+  font-size: 15px;  
+  color: #575757;  
+}  
+
+/* 用户认证 */  
+.promulgator-user-authen {  
+  display: flex;  
+  flex-wrap: wrap;
+  font-size: 13px;  
+  color: #FFC300;  /* 认证标志颜色 */  
+}  
+
+.authen_item {  
+  border-radius: 15px;
+  margin-top: 10px;
+  margin-right: 6px;  
+  padding: 0 10px;  
+  font-weight: 520;  
+  font-size: 12px;
+  line-height: 24px;
+  background: #FFC300;
+  color: #ffffff;  
+}  
+
+.act-detail {  
+  margin-top: 30rpx;  
+  padding: 14rpx;  
+}
+.act-time, .act-locat {  
+  display: flex;  
+  align-items: center;  
+  padding: 8px 0;  
+  font-family: 'Helvetica Neue', Arial, sans-serif;  
+  font-size: 15px;  
+}  
+.miconshijian, .micondingwei {  
+  font-size: 30px;  
+  color: #FFC300;  /* 图标颜色 */  
+  margin-right: 10px;  
+}  
+.locat-text {  
+  flex: 1;  
+  display: flex;  
+  flex-direction: column;  
+}  
+
+.locat-a {  
+  font-weight: bold;  
+}  
+
+.locat-b {  
+  font-size: 14px;  
+  color: #6A6A6A;  
+}  
+
+/* 活动图片 */  
+.act-image-cont {  
+  margin-top: 24rpx;
+  padding: 10px;
+  border-radius: 16px;  
+}
+
+.miconliaotian {
+  margin-left: 10px;
+  font-size: 28px;
+}
+.miconfenxiang_2 {
+  font-size: 26px;
+  margin-top: 1px;
+}
+.miconshoucang {
+  font-size: 26px;
+  margin-top: 1px;
+}
+.miconshoucang-copy {
+  font-size: 26px;
+  margin-top: 1px;
+  color: red;
+}
+.apply {
+  grid-column: 7 / 10;
+  width: 100px;
+  height: 40px;
+  border-radius: 15px;
+  text-align: center;
+  line-height: 40px;
+  color: #000;
+  background: #f7d067;
+}
+.cancel {
+  background: #fc9745;
+}
+
+
+.act-person {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);  
+  gap: 12px;
+  padding: 30px 18px;
+  min-height: 50vh;
+  box-sizing: border-box;  
+}
+.act-person-item {
+  width: 120rpx;
+  height: 120rpx;
+  position: relative;
+}
+.person-sex {
+  position: absolute;
+  left: 45rpx;
+  bottom: -5rpx;
+  background: rgb(255, 214, 127);
+  border-radius: 50%;
+  height: 40rpx;
+  width: 40rpx;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.person-headUrl {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  border: 2px solid rgb(255, 214, 127);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.person-headUrl-noauthen {
+  width: 58px;  
+  height: 58px;
+  border-radius: 50%;
+  border: 2px solid rgb(255, 242, 214);
+}
+.person-headUrl-null {
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  border: none !important;
+}
+
+
+/* 底部导航栏 */  
+.foot {
+  position: fixed;  
+  bottom: 0;  
+  left: 0;  
+  right: 0;  
+  height: 65px;  
+  background: #F0F0F0;  /* 柔和的背景颜色 */  
+  border-radius: 20px 20px 0 0;  
+  padding: 12px;  
+  display: grid;  
+  align-items: center;  
+  grid-template-columns: repeat(5, 1fr);  
+  grid-gap: 12px;  
+}  
+
+.clear-style {  
+  background-color: black; /* 设置背景颜色为黑色 */  
+  padding: 10px; /* 减少内间距以减小按钮宽度 */  
+  margin: 5px; /* 调整外间距，避免布局过于紧密 */  
+  border: none; /* 移除边框 */  
+  font-size: 8px; /* 字体大小 */  
+  display: inline-block; /* 确保按钮按行内块元素显示 */  
+  width: auto; /* 自动宽度，适应内容宽度 */  
+  max-width: 50px; /* 设置最大宽度约束 */  
+  position: relative; 
+  left: 218rpx;
+}
+.miconfenxiang_2{
+  color: #000;
+  opacity: 80%;
+}
+.miconliaotian, .miconfenxiang_2, .miconshoucang, .miconshoucang-copy {  
+  font-size: 28px;  
+}
+.miconshoucang-copy {  
+  color: #F05D5D;
+}  
+
+
+.tip {
+  margin-top: 20px;
+  margin-left: 15rpx;  
+  display: flex;  
+  box-sizing: border-box;  
+  padding-right: 25%;
+  justify-content: space-between;
+}
+.tip-item {
+  font-size: 18px;
+  line-height: 24px;
+  color: #FFC300;
+  transition: color 0.3s ease, border-bottom 0.3s ease;
+  font-family: 'Roboto', sans-serif; 
+}
+.tip_selected {  
+  font-size: 21px; 
+  line-height: 24px;              /* 增加行高，提升可读性 */  
+  font-weight: 600;               /* 使用半粗体，现代感更强 */  
+  color: #FFC300;                 /* 文字颜色：亮黄色 */  
+  transition: color 0.3s ease, border-bottom 0.3s ease; /* 增加过渡效果 */  
+  font-family: 'Roboto', sans-serif; /* 使用现代感强的无衬线字体 */  
+  font-weight: bold;
+}  
+
+/* 留言部分 */  
+.remark {
+  min-height: 50vh;
+  padding: 10px 12px;  
+  box-sizing: border-box;   
+  border-radius: 10px;  
+}  
+.r-head {  
+  width: 100%;  
+  display: flex;  
+  align-items: center;  
+}
+.r-head-url {  
+  width: 32px;  
+  height: 32px;  
+  border-radius: 50%;  
+  margin-right: 12px;  
+}
+.r-head-name {  
+  flex: 1;  
+  display: flex;  
+  align-items: center;  
+  font-size: 14px;  
+  color: #656565;  
+}
+.miconsexw {  
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  color: #296ec9;
+}
+.miconsexm {  
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  color: #DAA262;
+}  
+.r-head-time {  
+  font-size: 13px;  
+  color: #9F9F9F;  
+  margin-left: auto;  
+}  
+.r-cont {
+  word-wrap: break-word;
+  margin-left: 22px;  
+  margin-bottom: 22px;  
+  padding: 20px;  
+  border-radius: 12px;  
+  background: #FFF6DB;  /* 稍深的背景颜色 */  
+  color: #000;  
+  font-size: 14px;  
+}

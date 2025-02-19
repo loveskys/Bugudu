@@ -1,0 +1,43 @@
+<navigation-bar title="设置" back="{{true}}" color="black" background="#FFF"></navigation-bar>
+
+<view class="container">
+  <view class="setting">
+    
+    <view class="setting-wrapper" bindtap="toSettingPage" data-index="1">
+      <view class="setting-label"> 学生认证 </view>
+      <view class="setting-text">
+        <text wx:if="{{ userInfo.authStatus == 2 }}" style="color: rgb(6, 168, 74);" class="miconrenzheng">已认证</text>
+        <text wx:else style="color: rgb(200, 200, 200);" class="miconrenzheng"> 未认证</text>
+      </view>
+      <view class="setting-icon"> <icon class="miconyoujiantou"/> </view>
+    </view>
+
+    <view class="setting-wrapper" bindtap="toSettingPage" data-index="2">
+      <view class="setting-label"> 关于 </view>
+      <view class="setting-text"> </view>
+      <view class="setting-icon"> <icon class="miconyoujiantou"/> </view>
+    </view>
+
+    <view class="setting-wrapper" bindtap="toSettingPage" data-index="3">
+      <view class="setting-label"> 用户协议 </view>
+      <view class="setting-text"> </view>
+      <view class="setting-icon"> <icon class="miconyoujiantou"/> </view>
+    </view>
+
+    <view class="setting-wrapper" bindtap="toSettingPage" data-index="4">
+      <view class="setting-label"> 隐私政策 </view>
+      <view class="setting-text"> </view>
+      <view class="setting-icon"> <icon class="miconyoujiantou"/> </view>
+    </view>
+
+    <view class="setting-wrapper" bindtap="toSettingPage" data-index="5">
+      <view class="setting-label"> 账号与安全 </view>
+      <view class="setting-text"> </view>
+      <view class="setting-icon"> <icon class="miconyoujiantou"/> </view>
+    </view>
+  </view>
+
+  <!-- 删除“退出登陆”按钮 -->
+  <button style="margin: 30px auto;" size="default" type="warn" bindtap="logout">退出登录</button>
+
+</view>

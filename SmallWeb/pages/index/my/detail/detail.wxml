@@ -1,0 +1,85 @@
+<navigation-bar title="编辑资料" back="{{true}}" color="black" background="#FFF"></navigation-bar>
+
+<view class="container">
+  <view class="avatar-wrapper">
+    <button class="r-avatar-wrapper" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
+      <image wx:if="{{userInfo.headUrl}}" class="r-avatar" src="{{avatarUrl}}" />
+      <image wx:else class="r-avatar-null" src="/images/my/updateHeadUrl.png" />
+    </button>
+  </view>
+
+  <view class="input-wrapper">
+    <text class="label">昵称：</text>
+    <input class="input" type="text" placeholder="请输入昵称...(必填)" maxlength="9" value="{{userInfo.nickName}}" data-key="userInfo.nickName" bindinput="bindKeyInput" />
+  </view>
+
+  <view class="input-wrapper">
+    <text class="label">性别：</text>
+    <text class="input" wx:if="{{ userInfo.sex }}"> {{ userInfo.sex == 1 ? '男' : userInfo.sex == 2 ? '女' : '' }} </text>
+    <radio-group wx:else class="sexSelect" name="radio" data-key="sex" bindchange="bindKeyInput">
+      <label><radio value="1" checked="{{sex=='1'}}" />男 </label>
+      <label><radio value="2" checked="{{sex=='2'}}" />女</label>
+    </radio-group>
+  </view>
+
+  <view class="textarea-wrapper">
+  </view>
+  <textarea class="textarea" 
+  placeholder="描述一下自己的兴趣爱好吧~(不超过150字,选填)" 
+  maxlength="100" value="{{userInfo.intro}}" 
+  data-key="userInfo.intro" 
+  bindinput="bindKeyInput" 
+  />
+  <view class="capsule">
+    <view class="capsule-title">个性胶囊：</view>
+    <view class="capsule-optional">（选填）</view>
+  </view>
+  <view class="capsule-explain">星座、MBTI等信息会以胶囊的形式展示在主页~</view>
+  <view class="input-wrapper2">
+    <view class="radiusView">
+    <text class="label2">生日</text>
+    </view>
+    <picker class="picker" mode="date" value="{{userInfo.birthdate}}" data-key="userInfo.birthdate" start="1900-01-01" end="2024-01-01" bindchange="bindKeyInput">
+      <view wx:if="{{userInfo.birthdate}}" class="picker">{{ userInfo.birthdate }}</view>
+      <view wx:else style="color: #868686;">请选择出生日期</view>
+    </picker>
+  </view>
+
+  <!-- <view class="input-wrapper">
+    <text class="label">MBTI</text>
+    <view wx:if="{{userInfo.mbti}}" class="mbti" bindtap="mbti_open">{{userInfo.mbti}}</view>
+    <view wx:else class="mbti" style="color: #868686;" bindtap="mbti_open">选填</view>
+    <custom-popup 
+      wx:if="{{mbtiPopupVisible}}"
+      options="{{mbtiOptions}}"
+      isSingleSelect
+      bind:selectionsSubmitted="mbti_select"
+      bind:popupClosed="mbti_close" />
+  </view> -->
+  <view class="input-wrapper2">
+    <view class="radiusView">
+    <text class="label2">MBTI</text>
+    </view>
+    <picker mode="selector" range="{{mbtiOptions}}" bindchange="onMbtiChange">
+      <view class="mbti">
+        {{userInfo.mbti ? userInfo.mbti : '选填'}}
+      </view>
+    </picker>
+  </view>
+
+  <view class="input-wrapper2">
+    <view class="radiusView">
+    <text class="label2">标签</text>
+    </view>
+    <view wx:if="{{userInfo.hobby}}" class="hobby" bindtap="hobby_open">{{userInfo.hobby}}</view>
+    <view wx:else class="hobby" style="color: #868686;" bindtap="hobby_open">选填</view>
+    <custom-popup 
+      wx:if="{{hobbyPopupVisible}}"
+      options="{{hobbyOptions}}"
+      maxSelections="5"
+      bind:selectionsSubmitted="hobby_select"
+      bind:popupClosed="hobby_close" />
+  </view>
+  <view class="submitbtn" bindtap="saveSubmit">保存</view>
+
+</view>

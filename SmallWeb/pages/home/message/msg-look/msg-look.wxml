@@ -1,0 +1,9 @@
+<navigation-bar title="消息详情" back="{{true}}" color="black" background="#FFF"></navigation-bar>
+
+<view class="container">
+    <view class="msg-theme">{{msgInfo.msgTheme}}</view>
+    
+    <view class="msg-cont"> 
+      <view class="msg-text">{{msgInfo.msgText}}</view>
+    </view>
+</view>

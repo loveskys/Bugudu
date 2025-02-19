@@ -1,0 +1,111 @@
+<navigation-bar title="活动预览" back="{{true}}" color="black" background="#FFF"></navigation-bar>
+
+<view class="container">
+  <view class="preview">
+    <view class="title">
+      <view class="category">{{ activityInfo.category }}</view>
+      <view class="line">|</view>
+      <view class="theme">{{ activityInfo.theme }}</view>
+    </view>
+    <view class="intro"> {{activityInfo.intro}} </view>
+    <view class="condit">
+      <view class="condit-item" wx:for="{{ activityInfo.conditArray }}" wx:key="index">
+        <view class="condit-item-text"> {{ item }}</view>
+      </view>
+    </view>
+
+    <view class="promulgator">
+      <view class="promulgator-img">
+        <image class="user-headimg" src="{{userInfo.headUrl}}" />
+      </view>
+      <view class="promulgator-user">
+        <view class="promulgator-user-title">
+          {{userInfo.nickName}}
+          <icon wx:if="{{userInfo.sex==1}}" class="miconsexm" />
+          <icon wx:if="{{userInfo.sex==2}}" class="miconsexw" />
+        </view>
+        <view class="promulgator-user-authen">
+          <view wx:for="{{userInfo.authenArray}}" wx:key="id">
+            <view class="authen_item">{{ item }}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+
+    <view class="tip">
+      <view class="tip-item {{highlightedIndex === 1 ? 'tip_selected' : '' }}" bindtap="toActivityTag" data-index="1">活动详情</view>
+      <view class="tip-item {{highlightedIndex === 2 ? 'tip_selected' : '' }}" bindtap="toActivityTag" data-index="2">
+        已报名{{activityInfo.enrolledRatio}}</view>
+      <view class="tip-item {{highlightedIndex === 3 ? 'tip_selected' : '' }}" bindtap="toActivityTag" data-index="3">留言</view>
+    </view>
+
+
+    <view class="act-detail" wx:if="{{ highlightedIndex === 1 }}">
+      <view class="act-time">
+        <icon class="miconshijian"/>
+        <view> {{ activityInfo.startDate + activityInfo.startTime + " ~ " + activityInfo.endDate + activityInfo.endTime }}</view>
+      </view>
+      <view class="act-locat">
+        <icon class="locat-icon micondingwei"></icon>
+        <view class="locat-text">
+          <view class="locat-a">{{activityInfo.location.locationName}}</view>
+          <view class="locat-b">{{activityInfo.location.locationAddress}}</view>
+        </view>
+      </view>
+      <view class="act-image-cont">
+        <image class="act-image" src="{{activityInfo.image}}" bindtap="previewImage" mode="widthFix" 
+        style="width: 100%;border-radius: 16px;" show-menu-by-longpress />
+      </view>
+    </view>
+
+
+    <view class="act-person" wx:if="{{ highlightedIndex === 2 }}">
+      <view class="act-person-item" wx:for="{{ activityInfo.enrolledDetails }}" wx:key="index">
+        <image wx:if="{{item.userId}}" class="person-headUrl {{ item.userId && !item.userHeadUrl ? 'person-headUrl-noauthen':'' }}" 
+        src="{{item.userHeadUrl}}" bindtap="toUserDetail" data-index="{{index}}">
+          <icon wx:if="{{item.sex==1}}" class="person-sex miconsexm" />
+          <icon wx:if="{{item.sex==2}}" class="person-sex miconsexw" />
+        </image>
+        <image wx:if="{{!item.userId}}" class="person-headUrl person-headUrl-bull" src="{{item.userHeadUrl}}" />
+      </view>
+    </view>
+  
+
+    <view class="remark" wx:if="{{ highlightedIndex === 3 }}">
+      <view wx:for="{{ leaves }}" wx:key="index" >
+          <view class="r-head">
+            <image class="r-head-url" src="{{item.sendHeadUrl}}" />
+            <view class="r-head-name">{{item.sendNickname}}
+              <span wx:if="{{item.sendSex==1}}" class="miconsexm" />
+              <span wx:else class="miconsexw" />
+            </view>
+            <view class="r-head-time"> {{item.createTime}} </view>
+          </view>
+          <view class="r-cont"> {{item.messageCont}} </view>
+        </view>
+      </view>
+    </view>
+
+
+  <view class="foot">
+    <!-- <icon class="miconliaotian"/>
+    <icon class="miconshoucang"/>
+    <button type="default" open-type="share" class="clear-style"><icon class="miconfenxiang_2" bindtap="onShareTap"/></button> -->
+    <text class="apply" bindtap="toBack">编辑</text>
+
+    <apply-popup
+        style="z-index: 10;"
+        wx:if="{{applyPopupVisible}}"
+        apply="{{apply}}"
+        bind:submitApply="apply_submit"
+        bind:closeApply="apply_close" />
+
+    <leave
+        style="z-index: 10;"
+        wx:if="{{leavePopupVisible}}"
+        activityId="{{activityInfo.id}}"
+        bind:closeSendLeave="sndLeave_close" />
+
+  </view>
+</view>
